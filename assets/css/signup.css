@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-image: url(assets/images/hospital\ bg.png);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .welcome-message {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 30px;
+    margin-bottom: 20px;
+    border-radius: 16px;
+    max-width: 700px;
+    animation: fadeIn 1s ease-in-out;
+  }
+
+  .welcome-message h1 {
+    font-size: 32px;
+    color: black;
+    margin-bottom: 10px;
+  }
+
+  .welcome-message p {
+    font-size: 16px;
+    color: #333;
+  }
+
+  .signup-container {
+    background-color:transparent;
+    padding: 40px 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .form-logo {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    font-size: 24px;
+    color: black;
+    margin-bottom: 8px;
+  }
+
+  .tagline {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 25px;
+  }
+
+  .signup-form input {
+    width: 100%;
+    padding: 14px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: 0.3s;
+  }
+
+  .signup-form input:focus {
+    border-color: #7f00ff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(127, 0, 255, 0.4);
+
+  }
+
+  .btn-signup {
+    background-color:#E3D5EE;
+    color: black;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    transition: 0.3s ease-in-out;
+    margin-top: 10px;
+  }
+
+  .btn-signup:hover {
+    background-color: black;
+    color:#E3D5EE;
+  }
+
+  .login-link {
+    margin-top: 20px;
+    font-size: 14px;
+  }
+
+  .login-link a {
+    color: #7f00ff;
+    text-decoration: none;
+  }
+
+  .login-link a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 500px) {
+    .signup-container {
+      padding: 25px 20px;
+      margin: 10px;
+    }
+    .welcome-message h1 {
+      font-size: 24px;
+    }
+  }
