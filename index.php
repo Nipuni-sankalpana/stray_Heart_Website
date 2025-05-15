@@ -167,40 +167,9 @@
       </div>
     </div>
   </section>
-  <section id="reviews" class="container my-5">
-  <h2 class="text-center mb-4">What People Are Saying</h2>
-  <div class="row">
-  </div>
-</section>
-
-     
-  <section class="text-center my-5">
-  <h2 class="mb-3">Share Your Experience</h2>
-  <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#reviewModal">Write a Review</button>
-</section>
-<!-- Review Modal -->
-<div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <form method="POST" action="submit_review.php" class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Submit Your Review</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <input type="text" name="username" class="form-control mb-3" placeholder="Your Name" required>
-        <textarea name="message" class="form-control mb-3" placeholder="Write your review..." required></textarea>
-      </div>
-      <div class="modal-footer">
-        <button type="submit" name="submit_review" class="btn btn-primary">Submit Review</button>
-      </div>
-    </form>
-  </div>
-</div>
-
   
+
     
-
-
   <!-- Footer -->
   <footer class="text-center text-lg-start bg-body-white shadow-sm mt-5">
     <section
