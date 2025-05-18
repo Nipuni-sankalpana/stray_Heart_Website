@@ -1,15 +1,29 @@
 <?php
 session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    // Redirect to login if user is not logged in
+    header("Location: login.php");
+    exit();
+}
+
 $conn = new mysqli("localhost:3307", "root", "12345", "stray_heart");
 
-
-
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
 $user_id = $_SESSION['user_id'];
-$result = $conn->query("SELECT a.*, p.name AS pet_name 
+
+// Use prepared statement to prevent SQL injection
+$stmt = $conn->prepare("SELECT a.*, p.name AS pet_name 
                         FROM adoptions a 
                         JOIN pets p ON a.pet_id = p.id 
-                        WHERE a.user_id = $user_id");
+                        WHERE a.user_id = ?");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
 ?>
 
 <!DOCTYPE html>
@@ -17,9 +31,29 @@ $result = $conn->query("SELECT a.*, p.name AS pet_name
 <head>
     <title>User Dashboard</title>
     <style>
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: #fff; }
-        th, td { padding: 10px; border: 1px solid #ccc; }
-        th { background-color: #7f00ff; color: white; }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            padding: 20px;
+        }
+        h2, h3 {
+            color: #7f00ff;
+        }
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 20px; 
+            background: #fff; 
+        }
+        th, td { 
+            padding: 10px; 
+            border: 1px solid #ccc; 
+            text-align: center;
+        }
+        th { 
+            background-color: #7f00ff; 
+            color: white; 
+        }
     </style>
 </head>
 <body>

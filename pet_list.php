@@ -13,6 +13,7 @@ while($row = $species_result->fetch_assoc()) {
     $species[] = $row['species'];
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>

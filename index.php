@@ -81,20 +81,21 @@
         }
 
         .nav-link:hover {
-            color: white !important;
+            color: #e3d7ed;
             transform: translateY(-2px);
         }
 
         .btn-adopt {
             background-color: #E3D7ED;
-            color: black !important;
+            color:  black !important;
             border-radius: 50px;
             padding: 8px 20px !important;
             font-weight: 600;
         }
 
         .btn-adopt:hover {
-            background-color: #d0c4dd;
+            background-color:black;
+             color:  #E3D7ED !important;
             transform: translateY(-2px);
         }
         
