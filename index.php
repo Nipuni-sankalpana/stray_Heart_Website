@@ -45,9 +45,7 @@
         <li class="nav-item">
           <a class="nav-link" href="donation.php">Donation</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="user-dashboard.php">user dashboard</a>
-        </li>
+       
         <li class="nav-item ms-lg-3">
           <a class="nav-link btn-adopt" href="add-pet.php" id="addPetBtn">Add Pet</a>
         </li>

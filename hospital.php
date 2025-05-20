@@ -1,5 +1,5 @@
 <?php
-include 'db.php'; 
+include 'db.php';
 $query = "SELECT * FROM hospitals ORDER BY id DESC";
 $result = mysqli_query($conn, $query);
 ?>
@@ -32,27 +32,28 @@ $result = mysqli_query($conn, $query);
       color: var(--black);
       line-height: 1.6;
     }
+    
     /* Navbar styles */
-        .navbar {
-            background-color: transparent !important;
-        }
+    .navbar {
+      background-color: transparent !important;
+    }
 
-        .navbar-brand {
-            font-weight: 700;
-            color: #e3d7ed !important;
-        }
+    .navbar-brand {
+      font-weight: 700;
+      color: #e3d7ed !important;
+    }
 
-        .nav-link {
-            color: black !important;
-            font-weight: 500;
-            margin: 0 5px;
-            transition: all 0.3s ease;
-        }
+    .nav-link {
+      color: black !important;
+      font-weight: 500;
+      margin: 0 5px;
+      transition: all 0.3s ease;
+    }
 
-        .nav-link:hover {
-            color: #e3d7ed;
-            transform: translateY(-2px);
-        }
+    .nav-link:hover {
+      color: #e3d7ed;
+      transform: translateY(-2px);
+    }
     
     /* Hero Section */
     .hero-section {
@@ -79,7 +80,6 @@ $result = mysqli_query($conn, $query);
       position: relative;
       z-index: 2;
       max-width: 600px;
-      
     }
     
     .hero-title {
@@ -88,7 +88,6 @@ $result = mysqli_query($conn, $query);
       font-weight: 700;
       color: black;
       margin-bottom: 20px;
-      
     }
     
     .hero-subtitle {
@@ -103,7 +102,6 @@ $result = mysqli_query($conn, $query);
       color: var(--deep-purple);
       position: relative;
       margin-bottom: 30px;
-      
     }
     
     .section-title:after {
@@ -125,6 +123,7 @@ $result = mysqli_query($conn, $query);
       transition: all 0.3s ease;
       border: none;
       overflow: hidden;
+      cursor: pointer;
     }
     
     .hospital-card:hover {
@@ -247,7 +246,6 @@ $result = mysqli_query($conn, $query);
       padding: 15px 25px;
     }
     
-    
     /* Responsive Adjustments */
     @media (max-width: 992px) {
       .hero-section:before {
@@ -273,56 +271,52 @@ $result = mysqli_query($conn, $query);
       .hero-title {
         font-size: 1.8rem;
       }
-      
     }
   </style>
 </head>
 <body>
 <!-- Bootstrap Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="#">
-          <span style="color: #e3d7ed">Stray</span> <span style="color:black">Heart</span>
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link active" href="index.php">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="pet_list.php">Pet List</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="hospital.php">Hospitals</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="donation.php">Donation</a>
-            </li>
-            
-            
-          </ul>
-        </div>
-      </div>
-    </nav>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <span style="color: #e3d7ed">Stray</span> <span style="color:black">Heart</span>
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="index.php">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="pet_list.php">Pet List</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="hospital.php">Hospitals</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="donation.php">Donation</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
 <!-- Hero Section -->
 <section class="hero-section">
   <div class="container">
     <div class="hero-content">
-      <h1 class="hero-title">Pet Hospitals Near You
-</h1>
-      <p class="hero-subtitle">Find the best veterinary care for your furry friends</p>
+      <h1 class="hero-title">Pet Hospitals Near You</h1>
+      <p class="hero-subtitle">Find the best veterinary care for your furry friends</p>
       <a href="#hospitals" class="btn btn-primary">Explore Hospitals</a>
     </div>
   </div>
@@ -478,6 +472,7 @@ $result = mysqli_query($conn, $query);
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="getDirectionsBtn">Get Directions</button>
       </div>
     </div>
   </div>
@@ -496,13 +491,18 @@ $result = mysqli_query($conn, $query);
     }
   });
   
+  // Current hospital data
+  let currentHospital = null;
+  
   // Modal functionality
   function setModalData(hospital) {
+    currentHospital = hospital;
+    
     document.getElementById('hospitalModalLabel').innerHTML = 
       `<i class="fas fa-hospital me-2"></i>${hospital.name}`;
     
-    document.getElementById('hospitalModalBody').innerHTML = `
-      <div class="mb-3">
+    document.getElementById('hospitalModalBody').innerHTML = 
+      `<div class="mb-3">
         <h6 class="d-flex align-items-center">
           <i class="fas fa-map-marker-alt me-3" style="color: var(--dark-lavender);"></i>
           <span style="color: var(--deep-purple);">Location</span>
@@ -516,13 +516,7 @@ $result = mysqli_query($conn, $query);
         </h6>
         <p class="ms-5">${hospital.contact}</p>
       </div>
-      <div class="mb-3">
-        <h6 class="d-flex align-items-center">
-          <i class="fas fa-envelope me-3" style="color: var(--dark-lavender);"></i>
-          <span style="color: var(--deep-purple);">Email</span>
-        </h6>
-        <p class="ms-5">${hospital.email}</p>
-      </div>
+      
       <div class="mb-3">
         <h6 class="d-flex align-items-center">
           <i class="fas fa-stethoscope me-3" style="color: var(--dark-lavender);"></i>
@@ -535,10 +529,17 @@ $result = mysqli_query($conn, $query);
           <i class="fas fa-info-circle me-3" style="color: var(--dark-lavender);"></i>
           <span style="color: var(--deep-purple);">About</span>
         </h6>
-        <p class="ms-5">${hospital.about}</p>
-      </div>
-    `;
+        <p class="ms-5">${hospital.about || 'No additional information available.'}</p>
+      </div>`;
   }
+  
+  // Get Directions button handler
+  document.getElementById('getDirectionsBtn').addEventListener('click', function() {
+    if (currentHospital && currentHospital.location) {
+      const address = encodeURIComponent(currentHospital.location);
+      window.open(`https://www.google.com/maps/dir/?api=1&destination=${address}`, '_blank');
+    }
+  });
 </script>
 </body>
 </html>

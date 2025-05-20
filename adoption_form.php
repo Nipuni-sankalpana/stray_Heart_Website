@@ -30,85 +30,165 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Adopt a Pet</title>
     <style>
         body {
-            font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #e1f7f5, #f7e1f5);
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-image: url(assets/images/adoption.jpg);
+            background-size: cover;
             margin: 0;
             padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
 
         .form-container {
-            background: #fff;
-            max-width: 600px;
-            margin: 50px auto;
-            padding: 30px 40px;
+            background: transparent;
             border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2),
+                        0 3px 10px rgba(0, 0, 0, 0.1),
+                        inset 0 0 10px rgba(255, 255, 255, 0.3);
+            width: 400px;
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background:transparent;
+            z-index: -1;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(5px, 5px); }
         }
 
         h2 {
             text-align: center;
-            color: #7f00ff;
+            color: black;
+            text-shadow: 0 2px 3px rgba(0,0,0,0.2);
+            font-size: 24px;
+            margin-bottom: 20px;
+            position: relative;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         label {
             display: block;
+            color: black;
+            margin-bottom: 5px;
             font-weight: bold;
-            margin-bottom: 8px;
-            color: #444;
+            text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+            font-size: 14px;
         }
 
         input[type="text"],
         textarea,
         select {
             width: 100%;
-            padding: 10px;
-            border: 2px solid #ccc;
+            padding: 10px 12px;
+            border: none;
             border-radius: 8px;
-            font-size: 16px;
-            transition: border-color 0.3s;
+            font-size: 14px;
+            background: transparent;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        textarea {
+            min-height: 60px;
         }
 
         input:focus,
         textarea:focus,
         select:focus {
-            border-color: #e100ff;
+            background: #E3D7ED;
             outline: none;
+            box-shadow: 0 2px 10px rgba(255, 255, 255, 0.4);
         }
 
         button {
-            background: linear-gradient(45deg, #7f00ff, #e100ff);
-            color: white;
-            padding: 12px 20px;
+            background: #E3D7ED;
+            background-size: 200% 200%;
+            color: black;
+            padding: 12px;
             border: none;
             border-radius: 10px;
             font-size: 16px;
+            font-weight: bold;
             cursor: pointer;
             width: 100%;
-            transition: background 0.3s;
+            transition: all 0.4s ease;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            margin-top: 5px;
         }
 
         button:hover {
-            background: linear-gradient(45deg, #6a00cc, #cc00cc);
+            background-position: 100% 100%;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
         .message-box {
-            margin-top: 30px;
-            padding: 15px;
-            background: #fef6e4;
-            border-left: 5px solid #ffb703;
-            font-size: 14px;
-            color: #444;
-            border-radius: 8px;
+            margin-top: 15px;
+            padding: 12px;
+            background: transparent;
+            border-left: 3px solid #fad0c4;
+            color: black;
+            border-radius: 6px;
+            text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+            font-size: 13px;
         }
+
+        select option {
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+        }
+
+        /* Smaller paw prints decoration */
+        .paw {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .paw::before,
+        .paw::after {
+            content: '';
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            background: inherit;
+            border-radius: 50%;
+        }
+
+        .paw-1 { top: 8%; left: 12%; }
+        .paw-2 { bottom: 12%; right: 8%; }
+        .paw-3 { top: 25%; right: 15%; }
     </style>
 </head>
 <body>
 
 <div class="form-container">
+    <!-- Decorative paw prints -->
+    <div class="paw paw-1"></div>
+    <div class="paw paw-2"></div>
+    <div class="paw paw-3"></div>
+    
     <h2>Adoption Request Form</h2>
     <form method="POST">
         <div class="form-group">
@@ -139,16 +219,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <textarea name="address" id="address" required></textarea>
         </div>
 
-        <div class="form-group">
-            <label for="note">Additional Note:</label>
-            <textarea name="note" id="note" placeholder="Anything else we should know?"></textarea>
-        </div>
 
         <button type="submit">Send Adoption Request</button>
     </form>
 
     <div class="message-box">
-        <strong>Reminder:</strong> Adopting a pet is a lifetime commitment. Please ensure you can provide a safe, loving, and healthy environment. They deserve your time, love, and care.
+        <strong>❤️ Reminder:</strong> Adopting a pet is a lifetime commitment. Please ensure you can provide a safe, loving home.
     </div>
 </div>
 
