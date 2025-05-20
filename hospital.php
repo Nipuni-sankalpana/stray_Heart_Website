@@ -54,6 +54,19 @@ $result = mysqli_query($conn, $query);
       color: #e3d7ed;
       transform: translateY(-2px);
     }
+    .btn-adopt {
+            background-color: #E3D7ED;
+            color:  black !important;
+            border-radius: 50px;
+            padding: 8px 20px !important;
+            font-weight: 600;
+        }
+
+        .btn-adopt:hover {
+            background-color:black;
+             color:  #E3D7ED !important;
+            transform: translateY(-2px);
+        }
     
     /* Hero Section */
     .hero-section {
@@ -306,6 +319,9 @@ $result = mysqli_query($conn, $query);
         <li class="nav-item">
           <a class="nav-link" href="donation.php">Donation</a>
         </li>
+         <li class="nav-item ms-lg-3">
+              <a class="nav-link btn-adopt" href="#">Add pet</a>
+            </li>
       </ul>
     </div>
   </div>
