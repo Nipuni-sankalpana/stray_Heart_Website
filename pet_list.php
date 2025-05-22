@@ -139,6 +139,86 @@ while($row = $species_result->fetch_assoc()) {
         color: #666;
         display: none;
       }
+
+      /* Stray Pet Popup Styles */
+      .stray-popup {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 350px;
+        background: linear-gradient(135deg, #E3D7ED, #d0c4dd);
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        padding: 20px;
+        z-index: 1000;
+        transform: translateY(100px);
+        opacity: 0;
+        transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        font-family: 'Poppins', sans-serif;
+        border: 2px solid white;
+      }
+
+      .stray-popup.show {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      .stray-popup-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      .stray-popup h3 {
+        margin: 0;
+        color: #5a3d7a;
+        font-size: 1.4rem;
+        font-weight: 700;
+      }
+
+      .stray-popup-close {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #5a3d7a;
+        transition: transform 0.3s;
+      }
+
+      .stray-popup-close:hover {
+        transform: rotate(90deg);
+      }
+
+      .stray-popup-content {
+        color: #333;
+        margin-bottom: 15px;
+        line-height: 1.5;
+      }
+
+      .stray-popup-btn {
+        display: inline-block;
+        background: #5a3d7a;
+        color: white !important;
+        padding: 8px 20px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.1s;
+        border: none;
+        cursor: pointer;
+      }
+
+      .stray-popup-btn:hover {
+        background: #3a2652;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      }
+
+      .paw-icon {
+        font-size: 1.2rem;
+        margin-right: 5px;
+      }
     </style>
   </head>
   
@@ -188,6 +268,18 @@ while($row = $species_result->fetch_assoc()) {
         <h1>Welcome to Pet List 🐶🐱</h1>
         <p>Rescue. Love. Repeat. Find your perfect furry friend today!</p>
       </div>
+    </div>
+
+    <!-- Stray Pet Popup -->
+    <div class="stray-popup" id="strayPopup">
+      <div class="stray-popup-header">
+        <h3><i class="fas fa-paw paw-icon"></i> Found a Stray?</h3>
+        <button class="stray-popup-close" id="closePopup">&times;</button>
+      </div>
+      <div class="stray-popup-content">
+        Have you spotted any stray pets in your neighborhood? Help us give them a second chance by reporting them! Together we can add them to our pet list and find them loving homes.
+      </div>
+      <a href="#" class="stray-popup-btn">Share pet details with us via on whatsapp 0772605610</a>
     </div>
 
     <!-- Search Bar Section -->
@@ -307,6 +399,27 @@ while($row = $species_result->fetch_assoc()) {
                 this.classList.add('active');
                 performSearch();
             });
+        });
+
+        // Stray Pet Popup Functionality
+        const strayPopup = document.getElementById('strayPopup');
+        const closePopup = document.getElementById('closePopup');
+
+        // Show popup after 5 seconds
+        setTimeout(() => {
+            strayPopup.classList.add('show');
+        }, 2000);
+
+        // Close popup
+        closePopup.addEventListener('click', () => {
+            strayPopup.classList.remove('show');
+        });
+
+        // Close popup when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!strayPopup.contains(e.target) && e.target.id !== 'closePopup') {
+                strayPopup.classList.remove('show');
+            }
         });
     });
     </script>
