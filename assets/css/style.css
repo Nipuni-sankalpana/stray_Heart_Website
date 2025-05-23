@@ -171,17 +171,6 @@ object-fit: contain;
   font-size: 0.95rem;
   color: #666;
 }
-.review-section h2 {
-font-weight: 600;
-color: #343a40;
-}
-.review-section .card {
-border: none;
-transition: transform 0.2s ease;
-}
-.review-section .card:hover {
-transform: scale(1.02);
-}
 
 footer{
   background-color: #e3d7ed;

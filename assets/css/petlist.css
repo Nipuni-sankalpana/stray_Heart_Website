@@ -1,126 +1,187 @@
-body {
-  font-family: 'Open Sans', sans-serif;
-  background-image: url('assets/images/hospital bg.png');
-  margin: 0;
-  padding: 0;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
 
-.overlay {
-  background: linear-gradient(#E3D7ED);
-  padding: 60px 20px;
-  border-radius: 20px;
-  color: black;
-  animation: floatIn 1s ease-out;
-}
+      .navbar {
+        background-color: transparent !important;
+      }
 
-.hero {
- 
-  background-size: 80px;
-  padding: 80px 20px;
-  text-align: center;
-  position: relative;
-  border-radius: 0 0 30px 30px;
-  margin-bottom: 40px;
-  
-}
+      .navbar-brand {
+        font-weight: 700;
+        color: #e3d7ed !important;
+      }
 
+      .nav-link {
+        color: black !important;
+        font-weight: 500;
+        margin: 0 5px;
+        transition: all 0.3s ease;
+      }
 
+      .nav-link:hover {
+        color: white !important;
+        transform: translateY(-2px);
+      }
 
-.hero h1 {
-  font-family: 'Pacifico', cursive;
-  font-size: 48px;
-  margin: 0;
-}
+      .btn-adopt {
+        background-color: #E3D7ED;
+        color: black !important;
+        border-radius: 50px;
+        padding: 8px 20px !important;
+        font-weight: 600;
+      }
 
-.hero p {
-  font-size: 18px;
-  margin-top: 10px;
-}
+      .btn-adopt:hover {
+        background-color: #d0c4dd;
+        transform: translateY(-2px);
+      }
 
-@keyframes floatIn {
-  from {
-      transform: translateY(-30px);
-      opacity: 0;
-  }
-  to {
-      transform: translateY(0);
-      opacity: 1;
-  }
-}
+      /* Search Bar Styles */
+      .search-container {
+        max-width: 800px;
+        margin: 30px auto;
+        position: relative;
+      }
 
-.pet-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
-  padding: 0 20px 20px;
-}
+      .search-box {
+        width: 100%;
+        padding: 15px 20px;
+        border-radius: 50px;
+        border: none;
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        font-size: 16px;
+        transition: all 0.3s ease;
+        padding-right: 50px;
+      }
 
-.pet-card {
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 16px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.06);
-  padding: 15px;
-  text-align: center;
-  position: relative;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
+      .search-box:focus {
+        outline: none;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        transform: translateY(-2px);
+      }
 
-.pet-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-}
+      .search-btn {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #E3D7ED;
+        border: none;
+        color: #333;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
 
-.pet-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 10px;
-}
+      .search-btn:hover {
+        background: #d0c4dd;
+        transform: scale(1.05);
+      }
 
-.pet-card h3 {
-  margin: 10px 0 5px;
-  color: #333;
-}
+      .filter-dropdown {
+        margin-top: 10px;
+        text-align: center;
+      }
 
-.pet-card p {
-  margin: 4px 0;
-  color: #555;
-  font-size: 14px;
-}
+      .filter-btn {
+        background: #E3D7ED;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 50px;
+        margin: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
 
-.btn {
-  background-color: #E3D7ED;
-  color: black;
-  border: none;
-  padding: 10px 16px;
-  border-radius: 12px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s;
-  margin-top: 10px;
-}
+      .filter-btn:hover, .filter-btn.active {
+        background: #d0c4dd;
+        transform: translateY(-2px);
+      }
 
-.btn:hover {
-  background-color:black;
-  color:#E3D7ED;
-}
+      .no-results {
+        text-align: center;
+        padding: 50px;
+        font-size: 18px;
+        color: #666;
+        display: none;
+      }
 
-.like-btn {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
+      /* Stray Pet Popup Styles */
+      .stray-popup {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 350px;
+        background: linear-gradient(135deg, #E3D7ED, #d0c4dd);
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        padding: 20px;
+        z-index: 1000;
+        transform: translateY(100px);
+        opacity: 0;
+        transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        font-family: 'Poppins', sans-serif;
+        border: 2px solid white;
+      }
 
-.like-btn:hover {
-  transform: scale(1.2);
-}
+      .stray-popup.show {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      .stray-popup-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      .stray-popup h3 {
+        margin: 0;
+        color: #5a3d7a;
+        font-size: 1.4rem;
+        font-weight: 700;
+      }
+
+      .stray-popup-close {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #5a3d7a;
+        transition: transform 0.3s;
+      }
+
+      .stray-popup-close:hover {
+        transform: rotate(90deg);
+      }
+
+      .stray-popup-content {
+        color: #333;
+        margin-bottom: 15px;
+        line-height: 1.5;
+      }
+
+      .stray-popup-btn {
+        display: inline-block;
+        background: #5a3d7a;
+        color: white !important;
+        padding: 8px 20px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.1s;
+        border: none;
+        cursor: pointer;
+      }
+
+      .stray-popup-btn:hover {
+        background: #3a2652;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      }
+
+      .paw-icon {
+        font-size: 1.2rem;
+        margin-right: 5px;
+      }
+   

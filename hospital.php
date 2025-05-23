@@ -9,14 +9,16 @@ $result = mysqli_query($conn, $query);
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Hospital List - Stray Heart</title>
+  <title>Hospital List </title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  <!-- Custom CSS -->
-  <style>
+  
+</head>
+<style>
+  
     :root {
       --lavender: #E6E6FA;
       --dark-lavender: #B399D4;
@@ -258,6 +260,22 @@ $result = mysqli_query($conn, $query);
       border-top: none;
       padding: 15px 25px;
     }
+    .btn-primary {
+  border: 2px solid black;
+  color: black;
+  padding: 0.8rem 2rem;
+  font-weight: 600;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+
+.btn-primary  {
+  background-color:  #E3D7ED;
+  color: black;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
     
     /* Responsive Adjustments */
     @media (max-width: 992px) {
@@ -285,8 +303,8 @@ $result = mysqli_query($conn, $query);
         font-size: 1.8rem;
       }
     }
-  </style>
-</head>
+  
+</style>
 <body>
 <!-- Bootstrap Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
@@ -317,10 +335,10 @@ $result = mysqli_query($conn, $query);
           <a class="nav-link" href="hospital.php">Hospitals</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="donation.php">Donation</a>
+          <a class="nav-link" href="donate.php">Donation</a>
         </li>
          <li class="nav-item ms-lg-3">
-              <a class="nav-link btn-adopt" href="#">Add pet</a>
+              <a class="nav-link btn-adopt" href="signup.php">Sign Up</a>
             </li>
       </ul>
     </div>
@@ -333,7 +351,7 @@ $result = mysqli_query($conn, $query);
     <div class="hero-content">
       <h1 class="hero-title">Pet Hospitals Near You</h1>
       <p class="hero-subtitle">Find the best veterinary care for your furry friends</p>
-      <a href="#hospitals" class="btn btn-primary">Explore Hospitals</a>
+      <a href="#hosptals" class="btn btn-primary">Explore Hospitals</a>
     </div>
   </div>
 </section>

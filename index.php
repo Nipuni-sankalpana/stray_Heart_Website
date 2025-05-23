@@ -43,62 +43,17 @@
           <a class="nav-link" href="hospital.php">Hospitals</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="admin_money_donations.php">Donation</a>
+          <a class="nav-link" href="manage_stall_info.php">Donation</a>
         </li>
        
         <li class="nav-item ms-lg-3">
-          <a class="nav-link btn-adopt" href="add-pet.php" id="addPetBtn">Add Pet</a>
+          <a class="nav-link btn-adopt" href="signup.php" id="addPetBtn">Sign Up</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
-<style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
 
-        /* Navbar styles */
-        .navbar {
-            background-color: transparent !important;
-        }
-
-        .navbar-brand {
-            font-weight: 700;
-            color: #e3d7ed !important;
-        }
-
-        .nav-link {
-            color: black !important;
-            font-weight: 500;
-            margin: 0 5px;
-            transition: all 0.3s ease;
-        }
-
-        .nav-link:hover {
-            color: #e3d7ed;
-            transform: translateY(-2px);
-        }
-
-        .btn-adopt {
-            background-color: #E3D7ED;
-            color:  black !important;
-            border-radius: 50px;
-            padding: 8px 20px !important;
-            font-weight: 600;
-        }
-
-        .btn-adopt:hover {
-            background-color:black;
-             color:  #E3D7ED !important;
-            transform: translateY(-2px);
-        }
-        
-
-    </style>
 </head>
 <body>
    
@@ -107,7 +62,7 @@
     <div class="child-1">
       <div class="content">
         <h1>Stray <span>Heart</span></h1>
-        <span class="welcome-text">Welcome to our paw family..</span>
+        <span class="welcome-text">Welcome to our paw family.. 🐶🐱</span>
         <p>
          At Stray Heart, we believe every stray has a story—and every heart, no matter how small, deserves love. Our mission is to bridge the gap between lonely paws and loving homes, because no furry soul should walk this world unseen. Whether you're here to adopt, volunteer, or simply share in our compassion, you’re now part of a community that beats for the voiceless.
         </p>
@@ -224,10 +179,10 @@
             <p><i class="fas fa-home me-3"></i> B/9 Batupitiya, Atala</p>
             <p>
               <i class="fas fa-envelope me-3"></i>
-              sankalpananipuni132@gmail.com
+              strayheartpet@gmail.com
             </p>
             <p><i class="fas fa-phone me-3"></i> +94 77 260 5610</p>
-            <p><i class="fas fa-print me-3"></i> +94 71 418 8560</p>
+            
           </div>
         </div>
       </div>

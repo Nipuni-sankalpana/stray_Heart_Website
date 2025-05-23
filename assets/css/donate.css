@@ -1,0 +1,110 @@
+
+        :root {
+            --lavender: #e6e6fa;
+            --soft-lavender: #f0e6fa;
+            --dark-lavender: #9370db;
+            --white: #ffffff;
+            --black: #333333;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: var(--soft-lavender);
+            color: var(--black);
+            line-height: 1.6;
+        }
+        
+        h1 {
+            color: var(--dark-lavender);
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--dark-lavender);
+            padding-bottom: 10px;
+        }
+        
+        form {
+            background-color: var(--white);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        label {
+            display: block;
+            margin-top: 15px;
+            color: var(--black);
+            font-weight: 500;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-family: inherit;
+            transition: border 0.3s;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--dark-lavender);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(147, 112, 219, 0.2);
+        }
+        
+        button {
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: var(--dark-lavender);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.2s;
+            width: 100%;
+        }
+        
+        button:hover {
+            background: #7b68ee;
+            transform: translateY(-2px);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .message {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: #d8f3dc;
+            color: #2b8a3e;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        #money_fields, #food_fields, #item_fields {
+            padding: 15px;
+            background-color: var(--lavender);
+            border-radius: 5px;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            form {
+                padding: 15px;
+            }
+        }
+   

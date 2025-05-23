@@ -32,8 +32,8 @@ while($row = $species_result->fetch_assoc()) {
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins&display=swap" rel="stylesheet" />
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/petlist.css" />
-    
     <style>
+      
       .navbar {
         background-color: transparent !important;
       }
@@ -219,7 +219,9 @@ while($row = $species_result->fetch_assoc()) {
         font-size: 1.2rem;
         margin-right: 5px;
       }
+   
     </style>
+    
   </head>
   
   <body>
@@ -252,12 +254,13 @@ while($row = $species_result->fetch_assoc()) {
               <a class="nav-link" href="hospital.php">Hospitals</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="donation.php">Donation</a>
+              <a class="nav-link" href="donate.php">Donation</a>
             </li>
             
-            <li class="nav-item ms-lg-3">
-              <a class="nav-link btn-adopt" href="#">Add pet</a>
-            </li>
+            
+        <li class="nav-item ms-lg-3">
+          <a class="nav-link btn-adopt" href="signup.php" id="addPetBtn">Sign Up</a>
+        </li>
           </ul>
         </div>
       </div>
