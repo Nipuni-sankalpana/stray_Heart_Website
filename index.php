@@ -43,7 +43,10 @@
           <a class="nav-link" href="hospital.php">Hospitals</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="manage_stall_info.php">Donation</a>
+          <a class="nav-link" href="donate.php">Donation</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link" href="admin_dashboard.php">Admin</a>
         </li>
        
         <li class="nav-item ms-lg-3">

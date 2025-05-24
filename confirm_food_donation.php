@@ -8,19 +8,18 @@ require './PHPMailer/src/Exception.php';
 require './PHPMailer/src/PHPMailer.php';
 require './PHPMailer/src/SMTP.php';
 
-// Check if ID is provided
-if (!isset($_GET['id'])) {
+
     die("Invalid request");
 }
 
 $id = intval($_GET['id']);
 
-// Update the donation record to mark it as confirmed
+
 $stmt = $conn->prepare("UPDATE food_donations SET confirmed_by_admin = 1, confirmed_date = NOW() WHERE id = ?");
 $stmt->bind_param("i", $id);
 
 if ($stmt->execute()) {
-    // Get user email and name for notification
+   
     $stmt2 = $conn->prepare("SELECT u.email, u.name FROM food_donations f JOIN users u ON f.user_id = u.id WHERE f.id = ?");
     $stmt2->bind_param("i", $id);
     $stmt2->execute();
