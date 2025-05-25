@@ -30,31 +30,7 @@ $result = $stmt->get_result();
 <html>
 <head>
     <title>User Dashboard</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f2f2f2;
-            padding: 20px;
-        }
-        h2, h3 {
-            color: #7f00ff;
-        }
-        table { 
-            width: 100%; 
-            border-collapse: collapse; 
-            margin-top: 20px; 
-            background: #fff; 
-        }
-        th, td { 
-            padding: 10px; 
-            border: 1px solid #ccc; 
-            text-align: center;
-        }
-        th { 
-            background-color: #7f00ff; 
-            color: white; 
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/user-dashboard.css">
 </head>
 <body>
     

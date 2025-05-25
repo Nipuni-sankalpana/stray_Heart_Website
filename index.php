@@ -60,9 +60,6 @@ session_start();
             </ul>
           </li>
         <?php else: ?>
-          <li class="nav-item ms-lg-3">
-            <a class="nav-link btn-adopt" href="signup.php" id="addPetBtn">Sign Up</a>
-          </li>
           <li class="nav-item ms-lg-2">
             <a class="nav-link btn-adopt" href="login.php">Login</a>
           </li>
@@ -211,7 +208,7 @@ session_start();
       style="background-color: rgba(0, 0, 0, 0.05)"
     >
       © 2025 Copyright:
-      <a class="text-reset fw-bold" href="#">StrayHeart.com</a>
+      <a class="text-reset fw-bold" href="#">strayheartpet.com</a>
     </div>
   </footer>
 

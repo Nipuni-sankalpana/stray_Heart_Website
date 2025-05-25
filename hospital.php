@@ -23,299 +23,14 @@ $result = mysqli_query($conn, $query);
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  
+  <link rel="stylesheet" href="assets/css/hospital.css">
 </head>
-<style>
+
   
-    :root {
-      --lavender: #E6E6FA;
-      --dark-lavender: #B399D4;
-      --deep-purple: #5D3A9B;
-      --black: #1A1A1A;
-      --white: #FFFFFF;
-      --light-gray: #F8F8F8;
-    }
-    
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background-color: var(--white);
-      color: var(--black);
-      line-height: 1.6;
-    }
-    
-    /* Navbar styles */
-    .navbar {
-      background-color: transparent !important;
-    }
-
-    .navbar-brand {
-      font-weight: 700;
-      color: #e3d7ed !important;
-    }
-
-    .nav-link {
-      color: black !important;
-      font-weight: 500;
-      margin: 0 5px;
-      transition: all 0.3s ease;
-    }
-
-    .nav-link:hover {
-      color: #e3d7ed;
-      transform: translateY(-2px);
-    }
-    .btn-adopt {
-            background-color: #E3D7ED;
-            color:  black !important;
-            border-radius: 50px;
-            padding: 8px 20px !important;
-            font-weight: 600;
-        }
-
-        .btn-adopt:hover {
-            background-color:black;
-             color:  #E3D7ED !important;
-            transform: translateY(-2px);
-        }
-    
-    /* Hero Section */
-    .hero-section {
-      background: linear-gradient(135deg, var(--lavender) 0%, var(--white) 100%);
-      padding: 100px 0 80px;
-      margin-bottom: 60px;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .hero-section:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 40%;
-      height: 100%;
-      background: url('assets/images/hospital-hero.jpg') no-repeat center right;
-      background-size: cover;
-      opacity: 0.9;
-    }
-    
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 600px;
-    }
-    
-    .hero-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.8rem;
-      font-weight: 700;
-      color: black;
-      margin-bottom: 20px;
-    }
-    
-    .hero-subtitle {
-      font-size: 1.2rem;
-      color: var(--black);
-      margin-bottom: 30px;
-    }
-    
-    /* Main Content */
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      color: var(--deep-purple);
-      position: relative;
-      margin-bottom: 30px;
-    }
-    
-    .section-title:after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 0;
-      width: 60px;
-      height: 3px;
-      background-color: var(--dark-lavender);
-    }
-    
-    /* Hospital List */
-    .hospital-card {
-      background-color: var(--white);
-      border-radius: 10px;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-      margin-bottom: 20px;
-      transition: all 0.3s ease;
-      border: none;
-      overflow: hidden;
-      cursor: pointer;
-    }
-    
-    .hospital-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    }
-    
-    .hospital-card-header {
-      background-color: #E3D7ED;
-      color: var(--deep-purple);
-      font-weight: 600;
-      padding: 15px 20px;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    }
-    
-    .hospital-card-body {
-      padding: 20px;
-    }
-    
-    .hospital-info {
-      margin-bottom: 10px;
-    }
-    
-    .hospital-info i {
-      color: var(--dark-lavender);
-      width: 20px;
-      margin-right: 8px;
-    }
-    
-    .view-details {
-      color: var(--deep-purple);
-      font-weight: 500;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-    
-    .view-details:hover {
-      color: var(--dark-lavender);
-      text-decoration: underline;
-    }
-    
-    /* Tips Section */
-    .tips-section {
-      background-color: var(--light-gray);
-      padding: 60px 0;
-      margin: 60px 0;
-    }
-    
-    .tips-image-container {
-      position: relative;
-      overflow: hidden;
-      height: 100%;
-      min-height: 300px;
-    }
-    
-    .tips-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-    
-    .tips-image-container:hover .tips-image {
-      transform: scale(1.05);
-    }
-    
-    .accordion-item {
-      margin-bottom: 15px;
-      border-radius: 8px !important;
-      overflow: hidden;
-      border: 1px solid rgba(0, 0, 0, 0.1) !important;
-    }
-    
-    .accordion-button {
-      background-color: var(--white);
-      color: var(--black);
-      font-weight: 600;
-      padding: 15px 20px;
-    }
-    
-    .accordion-button:not(.collapsed) {
-      background-color: var(--lavender);
-      color: var(--deep-purple);
-    }
-    
-    .accordion-button:focus {
-      box-shadow: none;
-      border-color: var(--lavender);
-    }
-    
-    .accordion-body {
-      padding: 20px;
-      background-color: var(--white);
-    }
-    
-    /* Modal */
-    .modal-content {
-      border-radius: 10px;
-      border: none;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-    }
-    
-    .modal-header {
-      background-color: #E3D7ED;
-      color: var(--deep-purple);
-      border-bottom: none;
-      padding: 20px;
-    }
-    
-    .modal-title {
-      font-weight: 700;
-    }
-    
-    .modal-body {
-      padding: 25px;
-    }
-    
-    .modal-footer {
-      border-top: none;
-      padding: 15px 25px;
-    }
-    .btn-primary {
-  border: 2px solid black;
-  color: black;
-  padding: 0.8rem 2rem;
-  font-weight: 600;
-  border-radius: 50px;
-  transition: all 0.3s ease;
-}
-
-.btn-primary  {
-  background-color:  #E3D7ED;
-  color: black;
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-    
-    /* Responsive Adjustments */
-    @media (max-width: 992px) {
-      .hero-section:before {
-        width: 100%;
-        opacity: 0.3;
-      }
-      
-      .hero-content {
-        max-width: 100%;
-        text-align: center;
-      }
-      
-      .hero-title {
-        font-size: 2.2rem;
-      }
-    }
-    
-    @media (max-width: 768px) {
-      .hero-section {
-        padding: 80px 0 60px;
-      }
-      
-      .hero-title {
-        font-size: 1.8rem;
-      }
-    }
-  
-</style>
 <body>
-<!-- Bootstrap Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+
+  <!-- Bootstrap Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
   <div class="container">
     <a class="navbar-brand" href="#">
       <span style="color: #e3d7ed">Stray</span> <span style="color:black">Heart</span>
@@ -331,28 +46,39 @@ $result = mysqli_query($conn, $query);
     >
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a class="nav-link active" href="index.php">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="pet_list.php">Pet List</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="hospital.php">Hospitals</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="donate.php">Donation</a>
-        </li>
-         <li class="nav-item ms-lg-3">
-              <a class="nav-link btn-adopt" href="signup.php">Sign Up</a>
-            </li>
+        <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="pet_list.php">Pet List</a></li>
+        <li class="nav-item"><a class="nav-link" href="hospital.php">Hospitals</a></li>
+        <li class="nav-item"><a class="nav-link" href="donate.php">Donation</a></li>
+
+        <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin'): ?>
+          <li class="nav-item"><a class="nav-link" href="admin_dashboard.php">Admin</a></li>
+        <?php endif; ?>
+
+        <?php if (isset($_SESSION['user_id'])): ?>
+          <!-- Profile dropdown -->
+          <li class="nav-item dropdown ms-lg-3">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+              <i class="fas fa-user-circle fa-lg"></i> 
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="profile.php">View Profile</a></li>
+              <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+            </ul>
+          </li>
+        <?php else: ?>
+          
+          <li class="nav-item ms-lg-2">
+            <a class="nav-link btn-adopt" href="login.php">Login</a>
+          </li>
+        <?php endif; ?>
       </ul>
     </div>
   </div>
 </nav>
-
 <!-- Hero Section -->
 <section class="hero-section">
   <div class="container">

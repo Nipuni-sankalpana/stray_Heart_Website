@@ -1,10 +1,4 @@
-<?php
-session_start();
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit();
-}
-?>
+
 <?php
 include 'db.php';
 session_start();
@@ -37,356 +31,61 @@ while($row = $species_result->fetch_assoc()) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins&display=swap" rel="stylesheet" />
-  <style>
-    /* General Styles */
-    body {
-        font-family: 'Poppins', sans-serif;
-        background-color: #f8f9fa;
-        padding-top: 70px; /* To account for fixed navbar */
-    }
-
-    /* Navbar Styles */
-    .navbar {
-        background-color: transparent !important;
-        transition: all 0.3s ease;
-    }
-
-    .navbar.scrolled {
-        background-color: #E3D7ED !important;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-
-    .navbar-brand {
-        font-family: 'Pacifico', cursive;
-        font-size: 1.8rem;
-        font-weight: 700;
-        color: #e3d7ed !important;
-    }
-
-    .nav-link {
-        color: black !important;
-        font-weight: 500;
-        margin: 0 5px;
-        transition: all 0.3s ease;
-    }
-
-    .nav-link:hover {
-        color: white !important;
-        transform: translateY(-2px);
-    }
-
-    .btn-adopt {
-        background-color: #E3D7ED;
-        color: black !important;
-        border-radius: 50px;
-        padding: 8px 20px !important;
-        font-weight: 600;
-    }
-
-    .btn-adopt:hover {
-        background-color: #d0c4dd;
-        transform: translateY(-2px);
-    }
-
-    /* Hero Section */
-    .hero {
-        background-color: #d0c4dd;
-        background-size: cover;
-        background-position: center;
-        height: 400px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        color: black;
-        margin-bottom: 50px;
-    }
-
-    .hero .overlay h1 {
-        font-family: 'Playfair Display', serif;
-        font-size: 3.5rem;
-        margin-bottom: 20px;
-    }
-
-    .hero .overlay p {
-        font-size: 1.2rem;
-        max-width: 700px;
-        margin: 0 auto;
-    }
-
-    /* Pet Cards */
-    .pet-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 30px;
-        padding: 20px;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    .pet-card {
-        background: white;
-        border-radius: 15px;
-        overflow: hidden;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        transition: all 0.3s ease;
-        position: relative;
-    }
-
-    .pet-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-    }
-
-    .pet-card img {
-        width: 100%;
-        height: 250px;
-        object-fit: cover;
-    }
-
-    .pet-card h3 {
-        font-family: 'Playfair Display', serif;
-        margin: 15px 20px 10px;
-        color: #5a3d7a;
-    }
-
-    .pet-card p {
-        margin: 5px 20px;
-        color: #555;
-    }
-
-    .pet-card .btn {
-        display: block;
-        background: #E3D7ED;
-        color: #333;
-        text-align: center;
-        margin: 20px;
-        padding: 10px;
-        border-radius: 50px;
-        text-decoration: none;
-        font-weight: 600;
-        transition: all 0.3s ease;
-    }
-
-    .pet-card .btn:hover {
-        background: #d0c4dd;
-        transform: translateY(-2px);
-    }
-
-    .like-btn {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        background: rgba(255,255,255,0.8);
-        border: none;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        font-size: 18px;
-        cursor: pointer;
-        z-index: 10;
-        transition: all 0.3s ease;
-    }
-
-    .like-btn:hover {
-        transform: scale(1.1);
-    }
-
-    /* Search Bar Styles */
-    .search-container {
-        max-width: 800px;
-        margin: 30px auto;
-        position: relative;
-    }
-
-    .search-box {
-        width: 100%;
-        padding: 15px 20px;
-        border-radius: 50px;
-        border: none;
-        background: rgba(255, 255, 255, 0.9);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        font-size: 16px;
-        transition: all 0.3s ease;
-        padding-right: 50px;
-    }
-
-    .search-box:focus {
-        outline: none;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-        transform: translateY(-2px);
-    }
-
-    .search-btn {
-        position: absolute;
-        right: 5px;
-        top: 5px;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background: #E3D7ED;
-        border: none;
-        color: #333;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-
-    .search-btn:hover {
-        background: #d0c4dd;
-        transform: scale(1.05);
-    }
-
-    .filter-dropdown {
-        margin-top: 10px;
-        text-align: center;
-    }
-
-    .filter-btn {
-        background: #E3D7ED;
-        border: none;
-        padding: 8px 20px;
-        border-radius: 50px;
-        margin: 5px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-
-    .filter-btn:hover, .filter-btn.active {
-        background: #d0c4dd;
-        transform: translateY(-2px);
-    }
-
-    .no-results {
-        text-align: center;
-        padding: 50px;
-        font-size: 18px;
-        color: #666;
-        display: none;
-    }
-
-    /* Stray Pet Popup Styles */
-    .stray-popup {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        width: 350px;
-        background: linear-gradient(135deg, #E3D7ED, #d0c4dd);
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        padding: 20px;
-        z-index: 1000;
-        transform: translateY(100px);
-        opacity: 0;
-        transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        font-family: 'Poppins', sans-serif;
-        border: 2px solid white;
-    }
-
-    .stray-popup.show {
-        transform: translateY(0);
-        opacity: 1;
-    }
-
-    .stray-popup-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 15px;
-    }
-
-    .stray-popup h3 {
-        margin: 0;
-        color: #5a3d7a;
-        font-size: 1.4rem;
-        font-weight: 700;
-    }
-
-    .stray-popup-close {
-        background: none;
-        border: none;
-        font-size: 1.5rem;
-        cursor: pointer;
-        color: #5a3d7a;
-        transition: transform 0.3s;
-    }
-
-    .stray-popup-close:hover {
-        transform: rotate(90deg);
-    }
-
-    .stray-popup-content {
-        color: #333;
-        margin-bottom: 15px;
-        line-height: 1.5;
-    }
-
-    .stray-popup-btn {
-        display: inline-block;
-        background: #5a3d7a;
-        color: white !important;
-        padding: 8px 20px;
-        border-radius: 50px;
-        text-decoration: none;
-        font-weight: 600;
-        transition: all 0.1s;
-        border: none;
-        cursor: pointer;
-    }
-
-    .stray-popup-btn:hover {
-        background: #3a2652;
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-
-    .paw-icon {
-        font-size: 1.2rem;
-        margin-right: 5px;
-    }
-</style>
+   <link rel="stylesheet" href="assets/css/petlist.css">
   </head>
   
   <body>
-    <!-- Bootstrap Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="#">
-          <span style="color: #e3d7ed">Stray</span> <span style="color:black">Heart</span>
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link active" href="index.php">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="pet_list.php">Pet List</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="hospital.php">Hospitals</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="donate.php">Donation</a>
-            </li>
-            
-            
-        <li class="nav-item ms-lg-3">
-          <a class="nav-link btn-adopt" href="signup.php" id="addPetBtn">Sign Up</a>
-        </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    
+  <!-- Bootstrap Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <span style="color: #e3d7ed">Stray</span> <span style="color:black">Heart</span>
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="pet_list.php">Pet List</a></li>
+        <li class="nav-item"><a class="nav-link" href="hospital.php">Hospitals</a></li>
+        <li class="nav-item"><a class="nav-link" href="donate.php">Donation</a></li>
+
+        <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin'): ?>
+          <li class="nav-item"><a class="nav-link" href="admin_dashboard.php">Admin</a></li>
+        <?php endif; ?>
+
+        <?php if (isset($_SESSION['user_id'])): ?>
+          <!-- Profile dropdown -->
+          <li class="nav-item dropdown ms-lg-3">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+              <i class="fas fa-user-circle fa-lg"></i> 
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="profile.php">View Profile</a></li>
+              <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+            </ul>
+          </li>
+        <?php else: ?>
+          
+          <li class="nav-item ms-lg-2">
+            <a class="nav-link btn-adopt" href="login.php">Login</a>
+          </li>
+        <?php endif; ?>
+      </ul>
+    </div>
+  </div>
+</nav>
     
     <div class="hero">
       <div class="overlay">
@@ -453,8 +152,6 @@ while($row = $species_result->fetch_assoc()) {
       <?php endwhile; ?>
     </div>
 
-    <!-- Like sound -->
-    <audio id="likeSound" src="like-sound.mp3"></audio>
     <!-- Bootstrap Bundle JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
     <script>

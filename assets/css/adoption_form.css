@@ -1,4 +1,5 @@
-    body {
+ 
+            body {
             font-family: 'Comic Sans MS', cursive, sans-serif;
             background-image: url(assets/images/adoption.jpg);
             background-size: cover;
@@ -149,3 +150,4 @@
         .paw-2 { bottom: 12%; right: 8%; }
         .paw-3 { top: 25%; right: 15%; }
     
+  

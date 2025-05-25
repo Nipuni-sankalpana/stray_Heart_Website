@@ -13,25 +13,8 @@ $result = $conn->query("SELECT * FROM pets");
 <head>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css">
     <title>Manage Pets</title>
-    <style>
-        body { font-family: Arial; background: #f2f2f2; padding: 20px; }
-        table {
-            width: 100%; background: white;
-            border-collapse: collapse;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        th, td {
-            padding: 12px; text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        a.btn {
-            padding: 5px 10px; text-decoration: none;
-            border-radius: 5px; color: white;
-        }
-        .edit { background-color: #28a745; }
-        .delete { background-color: #dc3545; }
-        
-    </style>
+    <link rel="stylesheet" href="assets/css/manage-pets.css">
+    
 </head>
 <body>
 
