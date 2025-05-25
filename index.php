@@ -1,4 +1,9 @@
 
+
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,8 +19,8 @@
    <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
- <!-- Bootstrap Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <!-- Bootstrap Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
   <div class="container">
     <a class="navbar-brand" href="#">
       <span style="color: #e3d7ed">Stray</span> <span style="color:black">Heart</span>
@@ -31,27 +36,37 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a class="nav-link active" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="pet_list.php">Pet List</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="hospital.php">Hospitals</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="donate.php">Donation</a>
-        </li>
-         <li class="nav-item">
-          <a class="nav-link" href="admin_dashboard.php">Admin</a>
-        </li>
-       
-        <li class="nav-item ms-lg-3">
-          <a class="nav-link btn-adopt" href="signup.php" id="addPetBtn">Sign Up</a>
-        </li>
+        <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="pet_list.php">Pet List</a></li>
+        <li class="nav-item"><a class="nav-link" href="hospital.php">Hospitals</a></li>
+        <li class="nav-item"><a class="nav-link" href="donate.php">Donation</a></li>
+
+        <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin'): ?>
+          <li class="nav-item"><a class="nav-link" href="admin_dashboard.php">Admin</a></li>
+        <?php endif; ?>
+
+        <?php if (isset($_SESSION['user_id'])): ?>
+          <!-- Profile dropdown -->
+          <li class="nav-item dropdown ms-lg-3">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+              <i class="fas fa-user-circle fa-lg"></i> 
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="profile.php">View Profile</a></li>
+              <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+            </ul>
+          </li>
+        <?php else: ?>
+          <li class="nav-item ms-lg-3">
+            <a class="nav-link btn-adopt" href="signup.php" id="addPetBtn">Sign Up</a>
+          </li>
+          <li class="nav-item ms-lg-2">
+            <a class="nav-link btn-adopt" href="login.php">Login</a>
+          </li>
+        <?php endif; ?>
       </ul>
     </div>
   </div>

@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($user['role'] == 'admin') {
                 header("Location: admin_dashboard.php");
             } else {
-                header("Location: index.html");
+                header("Location: index.php");
             }
         } else {
             $error = "Invalid credentials.";
@@ -187,29 +187,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </style>
 </head>
 <body>
-    <div class="login-container">
-       
-        <img src="assets/images/dog_2437791.png" alt="Logo" class="logo">
-        <h2>Login Here</h2>
-        
-        <?php if(isset($error)): ?>
-            <div class="error-message"><?php echo $error; ?></div>
-        <?php endif; ?>
-        
-        <form method="post">
-            <div class="input-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" required placeholder="your@email.com">
-            </div>
-            
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required placeholder="••••••••">
-            </div>
-            
-            <button type="submit" class="btn">Login</button>
-            
-           
-    </div>
+
+<div class="login-container">
+    <img src="assets/images/dog_2437791.png" alt="Logo" class="logo">
+    <h2>Login Here</h2>
+
+    <?php if(isset($error)): ?>
+        <div class="error-message"><?php echo $error; ?></div>
+    <?php endif; ?>
+
+    <form method="post">
+        <div class="input-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required placeholder="your@email.com">
+        </div>
+
+        <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required placeholder="••••••••">
+        </div>
+
+        <button type="submit" class="btn">Login</button>
+    </form>
+
+    <p class="signup-message">Don't have an account? <a href="signup.php">Create one</a></p>
+</div>
+
+
 </body>
 </html>

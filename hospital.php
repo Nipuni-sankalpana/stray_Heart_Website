@@ -1,3 +1,11 @@
+
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
+?>
 <?php
 include 'db.php';
 $query = "SELECT * FROM hospitals ORDER BY id DESC";

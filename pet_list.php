@@ -1,4 +1,11 @@
 <?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
+?>
+<?php
 include 'db.php';
 session_start();
 $conn = new mysqli("localhost:3307", "root", "12345", "stray_heart");
@@ -30,52 +37,169 @@ while($row = $species_result->fetch_assoc()) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins&display=swap" rel="stylesheet" />
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/petlist.css" />
-    <style>
-      
-      .navbar {
-        background-color: transparent !important;
-      }
+  <style>
+    /* General Styles */
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f8f9fa;
+        padding-top: 70px; /* To account for fixed navbar */
+    }
 
-      .navbar-brand {
+    /* Navbar Styles */
+    .navbar {
+        background-color: transparent !important;
+        transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+        background-color: #E3D7ED !important;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .navbar-brand {
+        font-family: 'Pacifico', cursive;
+        font-size: 1.8rem;
         font-weight: 700;
         color: #e3d7ed !important;
-      }
+    }
 
-      .nav-link {
+    .nav-link {
         color: black !important;
         font-weight: 500;
         margin: 0 5px;
         transition: all 0.3s ease;
-      }
+    }
 
-      .nav-link:hover {
+    .nav-link:hover {
         color: white !important;
         transform: translateY(-2px);
-      }
+    }
 
-      .btn-adopt {
+    .btn-adopt {
         background-color: #E3D7ED;
         color: black !important;
         border-radius: 50px;
         padding: 8px 20px !important;
         font-weight: 600;
-      }
+    }
 
-      .btn-adopt:hover {
+    .btn-adopt:hover {
         background-color: #d0c4dd;
         transform: translateY(-2px);
-      }
+    }
 
-      /* Search Bar Styles */
-      .search-container {
+    /* Hero Section */
+    .hero {
+        background-color: #d0c4dd;
+        background-size: cover;
+        background-position: center;
+        height: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: black;
+        margin-bottom: 50px;
+    }
+
+    .hero .overlay h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+    }
+
+    .hero .overlay p {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    /* Pet Cards */
+    .pet-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 30px;
+        padding: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .pet-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .pet-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    }
+
+    .pet-card img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+    }
+
+    .pet-card h3 {
+        font-family: 'Playfair Display', serif;
+        margin: 15px 20px 10px;
+        color: #5a3d7a;
+    }
+
+    .pet-card p {
+        margin: 5px 20px;
+        color: #555;
+    }
+
+    .pet-card .btn {
+        display: block;
+        background: #E3D7ED;
+        color: #333;
+        text-align: center;
+        margin: 20px;
+        padding: 10px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .pet-card .btn:hover {
+        background: #d0c4dd;
+        transform: translateY(-2px);
+    }
+
+    .like-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: rgba(255,255,255,0.8);
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        font-size: 18px;
+        cursor: pointer;
+        z-index: 10;
+        transition: all 0.3s ease;
+    }
+
+    .like-btn:hover {
+        transform: scale(1.1);
+    }
+
+    /* Search Bar Styles */
+    .search-container {
         max-width: 800px;
         margin: 30px auto;
         position: relative;
-      }
+    }
 
-      .search-box {
+    .search-box {
         width: 100%;
         padding: 15px 20px;
         border-radius: 50px;
@@ -85,15 +209,15 @@ while($row = $species_result->fetch_assoc()) {
         font-size: 16px;
         transition: all 0.3s ease;
         padding-right: 50px;
-      }
+    }
 
-      .search-box:focus {
+    .search-box:focus {
         outline: none;
         box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         transform: translateY(-2px);
-      }
+    }
 
-      .search-btn {
+    .search-btn {
         position: absolute;
         right: 5px;
         top: 5px;
@@ -105,19 +229,19 @@ while($row = $species_result->fetch_assoc()) {
         color: #333;
         cursor: pointer;
         transition: all 0.3s ease;
-      }
+    }
 
-      .search-btn:hover {
+    .search-btn:hover {
         background: #d0c4dd;
         transform: scale(1.05);
-      }
+    }
 
-      .filter-dropdown {
+    .filter-dropdown {
         margin-top: 10px;
         text-align: center;
-      }
+    }
 
-      .filter-btn {
+    .filter-btn {
         background: #E3D7ED;
         border: none;
         padding: 8px 20px;
@@ -125,23 +249,23 @@ while($row = $species_result->fetch_assoc()) {
         margin: 5px;
         cursor: pointer;
         transition: all 0.3s ease;
-      }
+    }
 
-      .filter-btn:hover, .filter-btn.active {
+    .filter-btn:hover, .filter-btn.active {
         background: #d0c4dd;
         transform: translateY(-2px);
-      }
+    }
 
-      .no-results {
+    .no-results {
         text-align: center;
         padding: 50px;
         font-size: 18px;
         color: #666;
         display: none;
-      }
+    }
 
-      /* Stray Pet Popup Styles */
-      .stray-popup {
+    /* Stray Pet Popup Styles */
+    .stray-popup {
         position: fixed;
         bottom: 20px;
         right: 20px;
@@ -156,47 +280,47 @@ while($row = $species_result->fetch_assoc()) {
         transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         font-family: 'Poppins', sans-serif;
         border: 2px solid white;
-      }
+    }
 
-      .stray-popup.show {
+    .stray-popup.show {
         transform: translateY(0);
         opacity: 1;
-      }
+    }
 
-      .stray-popup-header {
+    .stray-popup-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-bottom: 15px;
-      }
+    }
 
-      .stray-popup h3 {
+    .stray-popup h3 {
         margin: 0;
         color: #5a3d7a;
         font-size: 1.4rem;
         font-weight: 700;
-      }
+    }
 
-      .stray-popup-close {
+    .stray-popup-close {
         background: none;
         border: none;
         font-size: 1.5rem;
         cursor: pointer;
         color: #5a3d7a;
         transition: transform 0.3s;
-      }
+    }
 
-      .stray-popup-close:hover {
+    .stray-popup-close:hover {
         transform: rotate(90deg);
-      }
+    }
 
-      .stray-popup-content {
+    .stray-popup-content {
         color: #333;
         margin-bottom: 15px;
         line-height: 1.5;
-      }
+    }
 
-      .stray-popup-btn {
+    .stray-popup-btn {
         display: inline-block;
         background: #5a3d7a;
         color: white !important;
@@ -207,21 +331,19 @@ while($row = $species_result->fetch_assoc()) {
         transition: all 0.1s;
         border: none;
         cursor: pointer;
-      }
+    }
 
-      .stray-popup-btn:hover {
+    .stray-popup-btn:hover {
         background: #3a2652;
         transform: translateY(-2px);
         box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      }
+    }
 
-      .paw-icon {
+    .paw-icon {
         font-size: 1.2rem;
         margin-right: 5px;
-      }
-   
-    </style>
-    
+    }
+</style>
   </head>
   
   <body>

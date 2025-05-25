@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="assets/css/signup.css" />
  
 </head>
-<body>
+
   <style>
      body {
     font-family: 'Poppins', sans-serif;
@@ -44,6 +44,7 @@
     
     <p class="login-link">Already have an account? <a href="login.php">Login here</a></p>
   </div>
+ 
 
 </body>
 </html>
