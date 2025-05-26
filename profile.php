@@ -70,7 +70,7 @@ if (!$user) {
       <p><strong>Email:</strong> <?php echo htmlspecialchars($user['email']); ?></p>
       <p><strong>Role:</strong> <?php echo htmlspecialchars($user['role']); ?></p>
       
-      <a href="index.php" class="btn btn-primary mt-3">Back to Home</a>
+      <a href="user-dashboard.php" class="btn btn-primary mt-3">user dashboard</a>
     </div>
   </div>
 </div>

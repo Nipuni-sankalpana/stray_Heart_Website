@@ -59,8 +59,8 @@ try {
     $mail->Body = "
         <p>Hi {$data['user_name']},</p>
         <p>Your request to adopt <strong>{$data['pet_name']}</strong> has been <strong>{$status}</strong>.</p>
-        <p>Thank you for supporting our mission!</p>
-        <br><p>Regards,<br>Pet Adoption Admin</p>
+        <p>Thank you for supporting our mission! we will contact you </p>
+        <br><p>Regards,<br>Stray Heart </p>
     ";
     $mail->AltBody = "Hi {$data['user_name']}, Your adoption request for {$data['pet_name']} has been {$status}.";
 

@@ -17,8 +17,7 @@
     }
 
     .navbar-brand {
-        font-family: 'Pacifico', cursive;
-        font-size: 1.8rem;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         font-weight: 700;
         color: #e3d7ed !important;
     }
@@ -31,7 +30,7 @@
     }
 
     .nav-link:hover {
-        color: white !important;
+        color: black!important;
         transform: translateY(-2px);
     }
 

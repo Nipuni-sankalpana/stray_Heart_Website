@@ -18,8 +18,7 @@
         }
 
         .navbar-brand {
-            font-family: 'Pacifico', cursive;
-            font-size: 1.8rem;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
             font-weight: 700;
             color: #e3d7ed !important;
         }
@@ -135,18 +134,6 @@
             display: none;
         }
 
-        .stall-info, .admin-address {
-            margin-top: 40px;
-            padding: 20px;
-            background: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.05);
-        }
-
-        .admin-address {
-            background-color: #fff8e1;
-            border-left: 4px solid #ffc107;
-        }
 
         .payment-icon {
             height: 30px;
