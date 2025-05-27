@@ -210,7 +210,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <button type="submit" class="btn">Login</button>
     </form>
 
-    <p class="signup-message">Don't have an account? <a href="signup.php">Create one</a></p>
+    <p class="signup-message">Don't have an account? <a href="register.php">Create one</a></p>
 </div>
 
 
