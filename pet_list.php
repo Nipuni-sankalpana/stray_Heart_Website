@@ -1,8 +1,11 @@
 
 <?php
+
+
 include 'db.php';
 session_start();
 $conn = new mysqli("localhost:3307", "root", "12345", "stray_heart");
+
 
 // Fetch all pets
 $pets = $conn->query("SELECT * FROM pets");
