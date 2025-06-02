@@ -171,6 +171,24 @@ object-fit: contain;
   font-size: 0.95rem;
   color: #666;
 }
+.pet-stall-section {
+    position: relative;
+  }
+  
+  .divider {
+    width: 80px;
+    height: 3px;
+    margin-top: 15px;
+  }
+  
+  .stall-card {
+    box-shadow: 0 5px 15px rgba(126, 87, 194, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .stall-card:hover {
+    transform: translateY(-5px);
+  }
 
 footer{
   background-color: #e3d7ed;
