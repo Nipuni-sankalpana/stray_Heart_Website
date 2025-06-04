@@ -221,10 +221,7 @@
                 </a>
                 
                 <div class="menu-category">Donations</div>
-                <a href="admin_donation.php" class="menu-item">
-                    <i class="fas fa-fw fa-hand-holding-heart"></i>
-                    <span>All Donations</span>
-                </a>
+               
                 <a href="admin_money_donations.php" class="menu-item">
                     <i class="fas fa-fw fa-money-bill-wave"></i>
                     <span>Money</span>
@@ -341,5 +338,8 @@
             </div>
         </div>
     </div>
+   <a href="javascript:history.back()" class="back-button">
+  <i class="fas fa-arrow-left"></i> Back
+</a>
 </body>
 </html>

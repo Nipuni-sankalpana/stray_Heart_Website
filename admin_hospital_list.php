@@ -7,9 +7,13 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css">
 </head>
 <body>
+  
 <div class="container mt-5">
   <h2>Hospital List</h2>
-  <a href="add_hospital.php" class="btn btn-success mb-3">+ Add Hospital</a>
+ <a href="add_hospital.php" class="btn mb-3" style="background-color:#E3D7ED; color: black;">+ Add Hospitals</a>
+ <a href="admin_dashboard.php" class="btn mb-3" style="background-color:#E3D7ED; color: black;">← Back</a>
+
+
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -40,6 +44,7 @@
       <?php } ?>
     </tbody>
   </table>
+  
 </div>
 </body>
 </html>

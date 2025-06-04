@@ -124,7 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['donation_type'])) {
         
         /* Navbar customization */
         .navbar {
-            background-color: transparent !important;
+            background-color:  #E3D7ED!important;
         }
 
         .navbar-brand {
@@ -235,12 +235,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['donation_type'])) {
         
         .info-card i {
             font-size: 2.5rem;
-            color: var(--primary);
+            color: #D1C4E9;
             margin-bottom: 15px;
         }
         
         .info-card h3 {
-            color: var(--primary);
+            color: black;
             margin-bottom: 15px;
         }
         
@@ -358,7 +358,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['donation_type'])) {
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
   <div class="container">
     <a class="navbar-brand" href="index.php">
-      <span style="color: #e3d7ed">Stray</span> <span style="color:black">Heart</span>
+      <span style="color: white">Stray</span> <span style="color:black">Heart</span>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>

@@ -29,7 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <input class="form-control mb-2" name="contact" placeholder="Contact" required>
     <input class="form-control mb-2" name="services" placeholder="Services" required>
     <textarea class="form-control mb-2" name="about" placeholder="About Hospital" required></textarea>
-    <button type="submit" class="btn btn-success">Add Hospital</button>
+    <button type="submit" class="btn btn-success" style=" background-color: #E3D7ED;color:black">Add Hospital</button>
+    
     <a href="admin_hospital_list.php" class="btn btn-secondary">Cancel</a>
   </form>
 </div>

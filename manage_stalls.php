@@ -23,7 +23,7 @@ $stalls = $conn->query("SELECT * FROM pet_stall ORDER BY id DESC");
         body { font-family: Arial; padding: 30px; }
         table { width: 100%; border-collapse: collapse; margin-top: 20px; }
         th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
-        th { background: #7f00ff; color: white; }
+        th { background: #E3D7ED; color: black; }
         .btn { padding: 5px 10px; border: none; border-radius: 4px; cursor: pointer; }
         .edit { background: #ff9800; color: white; }
         .delete { background: #f44336; color: white; }
@@ -34,7 +34,9 @@ $stalls = $conn->query("SELECT * FROM pet_stall ORDER BY id DESC");
 <body>
 
 <h2>Manage Pet Stalls</h2>
-<a class="add" href="admin_add_stall.php">+ Add New Stall</a>
+<a href="admin_add_stall.php" class="btn mb-3" style="background-color:#E3D7ED; color: black;">+Add New Stalls</a>
+<a href="admin_dashboard.php" class="btn mb-3" style="background-color:#E3D7ED; color: black;">← Back</a>
+
 
 <?php if (isset($_GET['deleted'])): ?>
     <p class="success">Stall deleted successfully.</p>

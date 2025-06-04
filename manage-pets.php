@@ -19,7 +19,9 @@ $result = $conn->query("SELECT * FROM pets");
 <body>
 
 <h2>Admin Panel - Manage Pets</h2>
-<a href="add-pet.php" class="btn btn-success mb-3">+ Add Pet</a>
+<a href="add-pet.php" class="btn mb-3" style="background-color:#E3D7ED; color: black;">+ Add Pet</a>
+<a href="admin_dashboard.php" class="btn mb-3" style="background-color:#E3D7ED; color: black;">← Back</a>
+
 
 <table>
     <thead>

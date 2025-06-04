@@ -2,7 +2,7 @@
 include 'db.php';
 session_start();
 
-// Optional: Only allow admin access
+// Optional admin check
 // if (!isset($_SESSION['admin_logged_in'])) {
 //     header("Location: login.php");
 //     exit;
@@ -18,34 +18,66 @@ $result = $conn->query("SELECT f.*, u.name FROM food_donations f JOIN users u ON
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 20px;
         }
+
+        h1 {
+            text-align: center;
+            color: #5a2a83;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin: 20px;
+            background-color: #dcd3e3;
+            color: #333;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background-color 0.2s ease;
+        }
+
+        .back-btn:hover {
+            background-color: #c5b6d4;
+        }
+
         table {
             border-collapse: collapse;
             width: 90%;
-            margin: 20px auto;
+            margin: 0 auto;
+            background-color: #fff;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         }
+
         th, td {
             padding: 12px;
-            border: 1px solid #aaa;
+            border: 1px solid #ccc;
             text-align: left;
         }
+
         th {
-            background-color: #f2f2f2;
+            background-color: #eee5f3;
+            color: #4b2c5e;
         }
-        h1 {
-            text-align: center;
-        }
-        a {
-            color: blue;
+
+        td a {
+            color: #007bff;
             text-decoration: none;
         }
-        a:hover {
+
+        td a:hover {
             text-decoration: underline;
         }
     </style>
 </head>
 <body>
+
+<a href="admin_dashboard.php" class="back-btn">← Back</a>
+
 <h1>Food Donations</h1>
+
 <table>
     <tr>
         <th>User</th>
@@ -75,5 +107,6 @@ $result = $conn->query("SELECT f.*, u.name FROM food_donations f JOIN users u ON
     </tr>
     <?php } ?>
 </table>
+
 </body>
 </html>

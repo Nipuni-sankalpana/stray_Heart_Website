@@ -24,6 +24,46 @@ $result = mysqli_query($conn, $query);
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/hospital.css">
+  <style>
+     body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Navbar customization */
+.navbar {
+  background-color:#E3D7ED !important;
+}
+
+.navbar-brand {
+  font-weight: 700;
+  color: #e3d7ed !important;
+}
+
+.nav-link {
+  color: black !important;
+  font-weight: 500;
+  margin: 0 5px;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  color: black !important;
+  transform: translateY(-2px);
+}
+
+.btn-adopt {
+  background-color: #E3D7ED;
+  color: black !important;
+  border-radius: 50px;
+  padding: 8px 20px !important;
+  font-weight: 600;
+}
+
+.btn-adopt:hover {
+  background-color: #d0c4dd;
+  transform: translateY(-2px);
+}
+  </style>
 </head>
 
   
@@ -33,7 +73,7 @@ $result = mysqli_query($conn, $query);
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
   <div class="container">
     <a class="navbar-brand" href="#">
-      <span style="color: #e3d7ed">Stray</span> <span style="color:black">Heart</span>
+      <span style="color: white">Stray</span> <span style="color:black">Heart</span>
     </a>
     <button
       class="navbar-toggler"
@@ -49,7 +89,7 @@ $result = mysqli_query($conn, $query);
 
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" href="index.php">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="pet_list.php">Pet List</a></li>
         <li class="nav-item"><a class="nav-link" href="hospital.php">Hospitals</a></li>
         <li class="nav-item"><a class="nav-link" href="donate.php">Donation</a></li>
