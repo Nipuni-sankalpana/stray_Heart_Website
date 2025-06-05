@@ -1,14 +1,14 @@
 <?php
 include 'db.php';
 
-$message = ""; // To store success or error messages
+$message = ""; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    $admin_emails = ['admin@example.com']; // You can add more emails here
+    $admin_emails = ['admin@example.com']; 
     $role = in_array($email, $admin_emails) ? 'admin' : 'user';
 
     $sql = "INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)";
@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <h2>Join the Paw-sitive Family!</h2>
     <p class="tagline">Adopt, love, and save lives.</p>
 
-    <?= $message ?> <!-- Output signup result message -->
+    <?= $message ?> 
 
     <form action="" method="POST" class="signup-form">
       <input type="text" name="name" placeholder="Full Name" required />

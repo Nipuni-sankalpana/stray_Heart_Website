@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Add New Pet</title>
-    <link rel="stylesheet" href="assets/css/add-pet.css"> <!-- Optional external CSS -->
+    <link rel="stylesheet" href="assets/css/add-pet.css">
     <style>
         
 
@@ -28,7 +28,7 @@
 </head>
 <body>
 
-    <!-- LEFT SIDE -->
+    
     <div class="left-section">
         <div class="welcome-message">
             <h1>Welcome to Stray Heart</h1>
@@ -40,12 +40,12 @@
         </div>
     </div>
 
-    <!-- RIGHT SIDE -->
+   
     <div class="right-section">
         <div class="form-container">
 
-            <!-- Back Button -->
-            <a href="admin_dashboard.php" class="back-btn">← Back to Dashboard</a>
+             <a href="admin_dashboard.php" class="back-btn">← Back to Dashboard</a>
+           
 
             <h2>Add New Pet</h2>
             <form action="insert-pet.php" method="POST" enctype="multipart/form-data">

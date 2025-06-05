@@ -3,10 +3,9 @@ include 'db.php';
 session_start();
 $conn = new mysqli("localhost:3307", "root", "12345", "stray_heart");
 
-// Fetch all pets
+
 $pets = $conn->query("SELECT * FROM pets");
 
-// Get unique species for dropdown
 $species_result = $conn->query("SELECT DISTINCT species FROM pets");
 $species = [];
 while($row = $species_result->fetch_assoc()) {
@@ -24,13 +23,13 @@ while($row = $species_result->fetch_assoc()) {
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Open+Sans&display=swap" rel="stylesheet">
     <script src="assets/js/script.js"></script>
 
-    <!-- Bootstrap CSS -->
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <!-- Font Awesome -->
+   
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <!-- Google Fonts -->
+   
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins&display=swap" rel="stylesheet" />
-    <!-- Custom CSS -->
+    
     <link rel="stylesheet" href="assets/css/petlist.css" />
    
     <style>
@@ -38,7 +37,6 @@ while($row = $species_result->fetch_assoc()) {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Navbar customization */
 .navbar {
   background-color:#E3D7ED !important;
 }
@@ -75,7 +73,7 @@ while($row = $species_result->fetch_assoc()) {
 .page-intro {
     background-color: #f8f9fa;
     border-bottom: 1px solid #e9ecef;
-    margin-top: 56px; /* To account for fixed navbar */
+    margin-top: 56px; 
   }
   .page-intro h2 {
     font-weight: 600;
@@ -90,10 +88,10 @@ while($row = $species_result->fetch_assoc()) {
   </head>
   
   <body>
-    <!-- Bootstrap Navbar -->
+    
    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#"><span style="color: black;">Stray</span> <span style="color:white;">Heart</span></a>
+        <a class="navbar-brand" href="#"><span style="color: black;">Stray</span> <span style="color:#5A3D7A;">Heart</span></a>
         <button class="navbar-toggler bg-black" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -127,7 +125,7 @@ while($row = $species_result->fetch_assoc()) {
         </div>
     </div>
 </nav>
-    <!-- Hero Section Removed and Replaced -->
+    
 <div class="page-intro">
   <div class="container text-center py-5">
     <h2 class="mb-3">Meet Our Furry Friends 🐶🐱</h2>
@@ -137,7 +135,7 @@ while($row = $species_result->fetch_assoc()) {
 
 
 
-    <!-- Stray Pet Popup -->
+    
     <div class="stray-popup" id="strayPopup">
       <div class="stray-popup-header">
         <h3><i class="fas fa-paw paw-icon"></i> Found a Stray?</h3>
@@ -149,7 +147,7 @@ while($row = $species_result->fetch_assoc()) {
       <a href="#" class="stray-popup-btn">Share pet details with us via on whatsapp 0772605610</a>
     </div>
 
-    <!-- Search Bar Section -->
+   
     <div class="search-container">
       <div class="input-group">
         <input type="text" id="petSearch" class="search-box" placeholder="Search pets by name, breed or description..." aria-label="Search pets">
@@ -177,7 +175,7 @@ while($row = $species_result->fetch_assoc()) {
       <?php while($row = $pets->fetch_assoc()): ?>
         <div class="pet-card" data-id="<?= $row['id'] ?>" data-species="<?= strtolower($row['species']) ?>">
           <?php
-          // Count likes for each pet
+         
           $likes_result = $conn->query("SELECT COUNT(*) AS total FROM likes WHERE pet_id=" . $row['id']);
           $likes = $likes_result->fetch_assoc()['total'];
           ?>
@@ -195,9 +193,9 @@ while($row = $species_result->fetch_assoc()) {
       <?php endwhile; ?>
     </div>
 
-    <!-- Like sound -->
+    
     <audio id="likeSound" src="like-sound.mp3"></audio>
-    <!-- Bootstrap Bundle JS -->
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
     <script>
     function likePet(petId) {
@@ -211,14 +209,14 @@ while($row = $species_result->fetch_assoc()) {
             if (data === "Liked") {
                 document.getElementById('likeSound').play();
                 alert("❤️ You liked this pet!");
-                location.reload(); // refresh to update like count
+                location.reload(); 
             } else {
                 alert(data);
             }
         });
     }
 
-    // Search and filter functionality
+    
     document.addEventListener('DOMContentLoaded', function() {
         const searchInput = document.getElementById('petSearch');
         const searchButton = document.getElementById('searchButton');
@@ -227,7 +225,7 @@ while($row = $species_result->fetch_assoc()) {
         const petContainer = document.getElementById('petContainer');
         const noResults = document.getElementById('noResults');
 
-        // Search function
+        
         function performSearch() {
             const searchTerm = searchInput.value.toLowerCase();
             const activeFilter = document.querySelector('.filter-btn.active').dataset.species;
@@ -256,7 +254,7 @@ while($row = $species_result->fetch_assoc()) {
             petContainer.style.display = hasResults ? 'flex' : 'none';
         }
 
-        // Event listeners
+        
         searchInput.addEventListener('input', performSearch);
         searchButton.addEventListener('click', performSearch);
 
@@ -268,21 +266,21 @@ while($row = $species_result->fetch_assoc()) {
             });
         });
 
-        // Stray Pet Popup Functionality
+        
         const strayPopup = document.getElementById('strayPopup');
         const closePopup = document.getElementById('closePopup');
 
-        // Show popup after 5 seconds
+       
         setTimeout(() => {
             strayPopup.classList.add('show');
         }, 2000);
 
-        // Close popup
+       
         closePopup.addEventListener('click', () => {
             strayPopup.classList.remove('show');
         });
 
-        // Close popup when clicking outside
+       
         document.addEventListener('click', (e) => {
             if (!strayPopup.contains(e.target) && e.target.id !== 'closePopup') {
                 strayPopup.classList.remove('show');

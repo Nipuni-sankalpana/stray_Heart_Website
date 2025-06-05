@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'db.php'; // Make sure this connects to your DB
+require_once 'db.php'; 
 
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
-// Fetch user details
+
 $sql = "SELECT * FROM users WHERE id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $user_id);
@@ -146,7 +146,7 @@ if (!$user) {
     </div>
   </div>
 </div>
-<!-- Bootstrap Bundle JS -->
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

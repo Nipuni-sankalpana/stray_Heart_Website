@@ -2,7 +2,7 @@
 session_start();
 include 'db.php';
 
-// Fetch pet stall info
+
 $stall = $conn->query("SELECT * FROM pet_stall LIMIT 1");
 $stall_info = $stall->fetch_assoc();
 ?>
@@ -17,7 +17,7 @@ $stall_info = $stall->fetch_assoc();
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="assets/css/style.css" />
   <style>
-    /* Navbar customization */
+
 .navbar {
   background-color:#E3D7ED !important;
 }
@@ -60,7 +60,7 @@ $stall_info = $stall->fetch_assoc();
 
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#"><span style="color: black;">Stray</span> <span style="color:white;">Heart</span></a>
+        <a class="navbar-brand" href="#"><span style="color: black;">Stray</span> <span style="color:#5A3D7A;">Heart</span></a>
         <button class="navbar-toggler bg-black" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -96,7 +96,7 @@ $stall_info = $stall->fetch_assoc();
 </nav>
 
 
-<!-- Hero Section -->
+
 <div class="flex-container">
   <div class="child-1">
     <div class="content">
@@ -114,9 +114,8 @@ $stall_info = $stall->fetch_assoc();
   </div>
 </div>
 
-<!-- Process Section -->
 <section class="process-section">
-  <h2 class="section-title">Our Adoption Process</h2>
+  <h2 class="section-title fw-bold">Our Adoption Process</h2>
   <div class="process-cards">
     <div class="process-card">
       <div class="process-icon"><i class="fas fa-search"></i></div>
@@ -141,7 +140,7 @@ $stall_info = $stall->fetch_assoc();
   </div>
 </section>
 
-<!-- Minimal Pet Stall Section -->
+
 <section class="pet-stall-section py-5" style="background-color: #fafafa;">
   <div class="container">
     <div class="text-center mb-5">
@@ -156,25 +155,25 @@ $stall_info = $stall->fetch_assoc();
           <div class="row">
             <div class="col-md-4 border-end pe-4">
               <div class="text-center">
-                <i class="fas fa-map-marker-alt fa-2x mb-3" style="color: black;"></i>
-                <h5 style="color: black;">Location</h5>
-                <p style="color: #424242;"><?= htmlspecialchars($stall_info['address']) ?></p>
+                <i class="fas fa-map-marker-alt fa-2x mb-3" style="color: #5A3D7A;"></i>
+                <h5 style="color: #5A3D7A;">Location</h5>
+                <p style="color: #5A3D7A;"><?= htmlspecialchars($stall_info['address']) ?></p>
               </div>
             </div>
             
             <div class="col-md-4 border-end px-4">
               <div class="text-center">
-                <i class="far fa-clock fa-2x mb-3" style="color: black;"></i>
-                <h5 style="color: black;">Hours</h5>
-                <p style="color: #424242;"><?= htmlspecialchars($stall_info['open_hours']) ?></p>
+                <i class="far fa-clock fa-2x mb-3" style="color: #5A3D7A;"></i>
+                <h5 style="color: #5A3D7A;">Hours</h5>
+                <p style="color: #5A3D7A;"><?= htmlspecialchars($stall_info['open_hours']) ?></p>
               </div>
             </div>
             
             <div class="col-md-4 ps-4">
               <div class="text-center">
-                <i class="fas fa-phone-alt fa-2x mb-3" style="color: black;"></i>
-                <h5 style="color: black;">Contact</h5>
-                <p style="color: #424242;"><?= htmlspecialchars($stall_info['contact']) ?></p>
+                <i class="fas fa-phone-alt fa-2x mb-3" style="color: #5A3D7A;"></i>
+                <h5 style="color: #5A3D7A;">Contact</h5>
+                <p style="color: #5A3D7A;"><?= htmlspecialchars($stall_info['contact']) ?></p>
               </div>
             </div>
           </div>
@@ -191,7 +190,7 @@ $stall_info = $stall->fetch_assoc();
 </section>
 
 
-<!-- Footer -->
+
 <footer class="text-center text-lg-start bg-body-white shadow-sm mt-5">
   <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
     <div class="me-5 d-none d-lg-block">

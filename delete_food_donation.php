@@ -2,16 +2,16 @@
 include 'db.php';
 session_start();
 
-// Optional: Only allow admin access
-// if (!isset($_SESSION['admin_logged_in'])) {
-//     header("Location: login.php");
-//     exit;
-// }
+
+ if (!isset($_SESSION['admin_logged_in'])) {
+     header("Location: login.php");
+     exit;
+}
 
 if (isset($_GET['id'])) {
     $id = intval($_GET['id']);
 
-    // Prepare and execute delete query
+    
     $stmt = $conn->prepare("DELETE FROM food_donations WHERE id = ?");
     $stmt->bind_param("i", $id);
 

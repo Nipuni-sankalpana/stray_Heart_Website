@@ -2,11 +2,12 @@
 include 'db.php';
 session_start();
 
-// Optional: Admin check
-// if (!isset($_SESSION['admin_logged_in'])) {
-//     header("Location: login.php");
-//     exit;
-// }
+
+ if (!isset($_SESSION['admin_logged_in'])) {
+     header("Location: login.php");
+    exit;
+ }
+
 
 $result = $conn->query("SELECT m.*, u.name FROM money_donations m JOIN users u ON m.user_id = u.id ORDER BY m.donation_date DESC");
 ?>

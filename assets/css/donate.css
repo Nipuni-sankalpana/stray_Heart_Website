@@ -1,24 +1,25 @@
-
-        :root {
-            --lavender: #e6e6fa;
-            --soft-lavender: #f0e6fa;
-            --dark-lavender: #9370db;
+:root {
+            --primary: #8a4fff;
+            --light-purple: #f3ebff;
             --white: #ffffff;
             --black: #333333;
+            --gray: #f5f5f5;
         }
-         
+        
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+            padding-top: 80px; /* To account for fixed navbar */
+        }
+        
+        /* Navbar customization */
         .navbar {
-            background-color: transparent !important;
-            transition: all 0.3s ease;
-        }
-
-        .navbar.scrolled {
-            background-color: #E3D7ED !important;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background-color:  #E3D7ED!important;
         }
 
         .navbar-brand {
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
             font-weight: 700;
             color: #e3d7ed !important;
         }
@@ -31,7 +32,7 @@
         }
 
         .nav-link:hover {
-            color: white !important;
+            color: black !important;
             transform: translateY(-2px);
         }
 
@@ -47,73 +48,162 @@
             background-color: #d0c4dd;
             transform: translateY(-2px);
         }
-
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            max-width: 900px;
-            margin: auto;
-            padding: 30px;
-            background-color: var(--soft-lavender);
-            color: var(--black);
-        }
-
-        h1, h2 {
-            color: var(--dark-lavender);
+        
+        .hero {
+            background-color: var(--light-purple);
+            padding: 80px 20px;
             text-align: center;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 40px;
         }
-
-        form {
-            background-color: var(--white);
+        
+        .hero h1 {
+            color: black;
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn-primary {
+            background-color: #E3D7ED;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            transition: all 0.3s;
+            color: black;
+        }
+        
+        .btn-primary:hover {
+            background-color: black;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(138, 79, 255, 0.3);
+            color: #E3D7ED;
+        }
+        
+        .donation-form {
+            max-width: 700px;
+            margin: 0 auto 50px;
+            padding: 30px;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+        }
+        
+        .form-title {
+            color: black;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .info-cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .info-card {
+            background: var(--white);
             padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            width: 300px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+            text-align: center;
+            transition: transform 0.3s;
         }
-
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .info-card i {
+            font-size: 2.5rem;
+            color: #D1C4E9;
+            margin-bottom: 15px;
+        }
+        
+        .info-card h3 {
+            color: black;
+            margin-bottom: 15px;
+        }
+        
+        .pet-image {
+            width: 100%;
+            max-width: 500px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin: 0 auto 50px;
+            display: block;
+        }
+        
         label {
+            font-weight: 600;
             margin-top: 15px;
             display: block;
-            font-weight: 500;
         }
-
+        
         input, select, textarea {
             width: 100%;
-            padding: 12px;
-            margin-top: 5px;
+            padding: 12px 15px;
             border: 1px solid #ddd;
-            border-radius: 5px;
+            border-radius: 8px;
+            margin-top: 5px;
+            font-family: inherit;
         }
-
-        input::placeholder {
-            color: #aaa;
-        }
-
+        
         input:focus, select:focus, textarea:focus {
-            outline: 2px solid var(--dark-lavender);
-            border-color: var(--dark-lavender);
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(138, 79, 255, 0.2);
         }
-
-        button {
-            margin-top: 20px;
-            padding: 12px;
-            background: var(--dark-lavender);
-            color: var(--white);
+        
+        .donate-btn {
+            background-color: #E3D7ED;
+            color: black;
             border: none;
-            border-radius: 5px;
-            cursor: pointer;
+            padding: 15px;
+            font-size: 1.1rem;
             font-weight: 600;
+            border-radius: 8px;
             width: 100%;
-            transition: background-color 0.3s;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
         }
-
-        button:hover {
-            background: #7b5dbd;
+        
+        .donate-btn:hover {
+            background-color: black;
+            color: #E3D7ED;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(138, 79, 255, 0.3);
         }
-
+        
+        #money_fields, #food_fields, #item_fields {
+            background-color: var(--light-purple);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            display: none;
+        }
+        
         .message {
             margin: 20px 0;
             padding: 15px;
             border-radius: 5px;
             text-align: center;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .message.success {
@@ -125,27 +215,31 @@
             background-color: #ffebee;
             color: #c62828;
         }
-
-        #money_fields, #food_fields, #item_fields {
-            margin-top: 15px;
-            background-color: var(--lavender);
-            padding: 15px;
-            border-radius: 5px;
-            display: none;
-        }
-
-
+        
         .payment-icon {
             height: 30px;
             margin-right: 10px;
         }
-
+        
         @media (max-width: 768px) {
-            body { 
-                padding: 15px; 
+            .hero {
+                padding: 60px 15px;
             }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .donation-form {
+                padding: 20px;
+            }
+            
+            .pet-image {
+                height: 300px;
+            }
+            
             .navbar-brand {
-                font-size: 1.5rem;
+                font-size: 1.3rem;
             }
         }
     

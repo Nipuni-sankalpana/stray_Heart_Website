@@ -1,5 +1,11 @@
 <?php
 include 'db.php';
+
+ if (!isset($_SESSION['admin_logged_in'])) {
+     header("Location: login.php");
+    exit;
+ }
+
 $result = $conn->query("SELECT a.*, u.name AS user_name, u.email, p.name AS pet_name FROM adoptions a JOIN users u ON a.user_id = u.id JOIN pets p ON a.pet_id = p.id");
 ?>
 

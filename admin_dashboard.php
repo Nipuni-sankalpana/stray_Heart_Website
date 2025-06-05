@@ -25,7 +25,7 @@
             min-height: 100vh;
         }
         
-        /* Sidebar Styles */
+        
         .sidebar {
             width: 250px;
             background-color: var(--bg-color);
@@ -189,7 +189,7 @@
 </head>
 <body>
     <div class="dashboard-container">
-        <!-- Sidebar -->
+       
         <div class="sidebar">
             <div class="sidebar-header">
                 <h3>Stray Heart Admin</h3>
@@ -245,7 +245,6 @@
             </div>
         </div>
         
-        <!-- Main Content -->
         <div class="main-content">
             <div class="top-bar">
                 <div class="page-title">
@@ -253,7 +252,7 @@
                 </div>
             </div>
             
-            <!-- Dashboard Cards -->
+            
             <div class="dashboard-cards">
                 <div class="card">
                     <div class="card-header">
@@ -306,7 +305,7 @@
                 </div>
                 
             
-            <!-- Quick Links Section -->
+            
             <div class="card">
                 <div class="card-header">
                     <h3>Donations & stalls</h3>
@@ -338,8 +337,8 @@
             </div>
         </div>
     </div>
-   <a href="javascript:history.back()" class="back-button">
-  <i class="fas fa-arrow-left"></i> Back
-</a>
+   
+<a href="index.php" class="back-btn">← Back to Dashboard</a>
+           
 </body>
 </html>

@@ -8,14 +8,14 @@ if (!isset($_SESSION['user_id'])) {
 
 $conn = new mysqli("localhost:3307", "root", "12345", "stray_heart");
 
-// Check connection
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
 $user_id = $_SESSION['user_id'];
 
-// Fetch adoption requests
+
 $stmt = $conn->prepare("SELECT a.*, p.name AS pet_name 
                         FROM adoptions a 
                         JOIN pets p ON a.pet_id = p.id 

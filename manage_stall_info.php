@@ -1,26 +1,26 @@
 <?php
 session_start();
-include 'db.php'; // your DB connection
+include 'db.php'; 
 
 
-// Handle form submission
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $address = mysqli_real_escape_string($conn, $_POST['address']);
     $schedule = mysqli_real_escape_string($conn, $_POST['schedule']);
 
-    // Check if a record exists
+    
     $check = mysqli_query($conn, "SELECT * FROM pet_stalls");
     if (mysqli_num_rows($check) > 0) {
-        // Update
+        
         mysqli_query($conn, "UPDATE pet_stalls SET address='$address', schedule='$schedule'");
     } else {
-        // Insert
+       
         mysqli_query($conn, "INSERT INTO pet_stalls (address, schedule) VALUES ('$address', '$schedule')");
     }
     $message = "Stall info saved successfully.";
 }
 
-// Get existing data
+
 $result = mysqli_query($conn, "SELECT * FROM pet_stalls LIMIT 1");
 $row = mysqli_fetch_assoc($result);
 ?>

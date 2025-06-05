@@ -29,9 +29,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <title>Adopt a Pet</title>
     <link rel="stylesheet" href="assets/css/adoption_form.css">
-    <!-- Bootstrap CSS -->
+    
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" />
-   <!-- Font Awesome for icons -->
+   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
 
@@ -48,9 +48,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             min-height: 100vh;
         }
         
-/* Navbar customization */
+
 .navbar {
-  background-color: transparent !important;
+  background-color: #E3D7ED !important;
 }
 
 .navbar-brand {
@@ -259,7 +259,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <?php endif; ?>
 
         <?php if (isset($_SESSION['user_id'])): ?>
-          <!-- Profile dropdown -->
+         
           <li class="nav-item dropdown ms-lg-3">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
               <i class="fas fa-user-circle fa-lg"></i> 
@@ -281,7 +281,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </nav>
 
 <div class="form-container">
-    <!-- Decorative paw prints -->
+   
     <div class="paw paw-1"></div>
     <div class="paw paw-2"></div>
     <div class="paw paw-3"></div>
@@ -324,7 +324,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <strong>❤️ Reminder:</strong> Adopting a pet is a lifetime commitment. Please ensure you can provide a safe, loving home.
     </div>
 </div>
- <!-- Bootstrap Bundle JS -->
+ 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -2,11 +2,11 @@
 include 'db.php';
 session_start();
 
-// Optional admin check
-// if (!isset($_SESSION['admin_logged_in'])) {
-//     header("Location: login.php");
-//     exit;
-// }
+
+ if (!isset($_SESSION['admin_logged_in'])) {
+     header("Location: login.php");
+    exit;
+ }
 
 $result = $conn->query("SELECT f.*, u.name FROM food_donations f JOIN users u ON f.user_id = u.id ORDER BY f.donation_date DESC");
 ?>
@@ -43,6 +43,15 @@ $result = $conn->query("SELECT f.*, u.name FROM food_donations f JOIN users u ON
             background-color: #c5b6d4;
         }
 
+        .message {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .success { color: green; }
+        .error { color: red; }
+
         table {
             border-collapse: collapse;
             width: 90%;
@@ -77,6 +86,18 @@ $result = $conn->query("SELECT f.*, u.name FROM food_donations f JOIN users u ON
 <a href="admin_dashboard.php" class="back-btn">← Back</a>
 
 <h1>Food Donations</h1>
+
+<?php if (isset($_GET['msg'])): ?>
+    <div class="message <?php echo $_GET['msg'] === 'confirmed' ? 'success' : 'error'; ?>">
+        <?php
+        if ($_GET['msg'] === 'confirmed') {
+            echo "Donation confirmed and email sent successfully!";
+        } elseif ($_GET['msg'] === 'email_failed') {
+            echo "Donation confirmed, but email sending failed.";
+        }
+        ?>
+    </div>
+<?php endif; ?>
 
 <table>
     <tr>

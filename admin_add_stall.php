@@ -1,9 +1,9 @@
 <?php
 
 
-include 'db.php'; // Your DB connection
+include 'db.php'; 
 
-// Handle form submission
+
 $success = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_stall'])) {
     $address = mysqli_real_escape_string($conn, $_POST['address']);

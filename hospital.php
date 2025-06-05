@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 if (!isset($_SESSION['user_id'])) {
@@ -8,8 +7,37 @@ if (!isset($_SESSION['user_id'])) {
 ?>
 <?php
 include 'db.php';
-$query = "SELECT * FROM hospitals ORDER BY id DESC";
+
+
+$search = isset($_GET['search']) ? $_GET['search'] : '';
+$location_filter = isset($_GET['location']) ? $_GET['location'] : '';
+
+
+$query = "SELECT * FROM hospitals WHERE 1=1";
+
+
+if (!empty($search)) {
+    $query .= " AND (name LIKE '%" . mysqli_real_escape_string($conn, $search) . "%' 
+              OR services LIKE '%" . mysqli_real_escape_string($conn, $search) . "%')";
+}
+
+
+if (!empty($location_filter)) {
+    $query .= " AND location LIKE '%" . mysqli_real_escape_string($conn, $location_filter) . "%'";
+}
+
+
+$query .= " ORDER BY id DESC";
+
 $result = mysqli_query($conn, $query);
+
+
+$locations_query = "SELECT DISTINCT location FROM hospitals ORDER BY location";
+$locations_result = mysqli_query($conn, $locations_query);
+$locations = [];
+while ($row = mysqli_fetch_assoc($locations_result)) {
+    $locations[] = $row['location'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -19,9 +47,9 @@ $result = mysqli_query($conn, $query);
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Hospital List </title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"/>
-  <!-- Font Awesome -->
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-  <!-- Google Fonts -->
+ 
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/hospital.css">
   <style>
@@ -29,7 +57,7 @@ $result = mysqli_query($conn, $query);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Navbar customization */
+
 .navbar {
   background-color:#E3D7ED !important;
 }
@@ -63,17 +91,76 @@ $result = mysqli_query($conn, $query);
   background-color: #d0c4dd;
   transform: translateY(-2px);
 }
+
+.search-filter-container {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.search-filter-container .row {
+    align-items: center;
+}
+
+.filter-label {
+    font-weight: 600;
+    margin-right: 10px;
+    color: #495057;
+}
+
+  
+  .hero-section {
+    position: relative;
+    height: 400px; 
+    color: white;
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    text-align: center; 
+    padding: 0 20px;
+    margin-top: 56px; 
+  }
+
+  .hero-content {
+    max-width: 1200px;
+    width: 100%;
+  }
+
+  .hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    
+  }
+
+  .hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  }
+  .btn-primary:hover{
+  background-color: #1A1A1A;
+  color: white;
+}
+.section-title{
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+
   </style>
 </head>
 
   
 <body>
 
-  <!-- Bootstrap Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
   <div class="container">
     <a class="navbar-brand" href="#">
-      <span style="color: white">Stray</span> <span style="color:black">Heart</span>
+      <span style="color: black">Stray</span> <span style="color:#5A3D7A">Heart</span>
     </a>
     <button
       class="navbar-toggler"
@@ -99,7 +186,7 @@ $result = mysqli_query($conn, $query);
         <?php endif; ?>
 
         <?php if (isset($_SESSION['user_id'])): ?>
-          <!-- Profile dropdown -->
+         
           <li class="nav-item dropdown ms-lg-3">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
               <i class="fas fa-user-circle fa-lg"></i> 
@@ -119,51 +206,90 @@ $result = mysqli_query($conn, $query);
     </div>
   </div>
 </nav>
-<!-- Hero Section -->
+
 <section class="hero-section">
   <div class="container">
     <div class="hero-content">
       <h1 class="hero-title">Pet Hospitals Near You</h1>
       <p class="hero-subtitle">Find the best veterinary care for your furry friends</p>
-      <a href="#hosptals" class="btn btn-primary">Explore Hospitals</a>
+      <a href="#hospitals" class="btn btn-primary">Explore Hospitals</a>
     </div>
   </div>
 </section>
 
-<!-- Main Content -->
+
 <div class="container" id="hospitals">
+ 
+  <div class="search-filter-container">
+    <form method="GET" action="">
+      <div class="row">
+        <div class="col-md-6 mb-3 mb-md-0">
+          <div class="input-group">
+            <input type="text" class="form-control" name="search" placeholder="Search hospitals..." value="<?php echo htmlspecialchars($search); ?>">
+            <button class="btn btn-primary" type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row align-items-center">
+            <div class="col-md-4">
+              <span class="filter-label">Filter by:</span>
+            </div>
+            <div class="col-md-8">
+              <select class="form-select" name="location" onchange="this.form.submit()">
+                <option value="">All Locations</option>
+                <?php foreach ($locations as $loc): ?>
+                  <option value="<?php echo htmlspecialchars($loc); ?>" <?php echo ($location_filter == $loc) ? 'selected' : ''; ?>>
+                    <?php echo htmlspecialchars($loc); ?>
+                  </option>
+                <?php endforeach; ?>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  
   <div class="row">
     <div class="col-lg-8">
       <h2 class="section-title">Nearby Pet Hospitals</h2>
       
-      <div class="row">
-        <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-          <div class="col-md-6">
-            <div class="hospital-card" data-bs-toggle="modal" data-bs-target="#hospitalModal" onclick='setModalData(<?php echo json_encode($row); ?>)'>
-              <div class="hospital-card-header">
-                <i class="fas fa-hospital me-2"></i><?php echo htmlspecialchars($row['name']); ?>
-              </div>
-              <div class="hospital-card-body">
-                <div class="hospital-info">
-                  <i class="fas fa-map-marker-alt"></i>
-                  <span><?php echo htmlspecialchars($row['location']); ?></span>
+      <?php if (mysqli_num_rows($result) > 0): ?>
+        <div class="row">
+          <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+            <div class="col-md-6 mb-4">
+              <div class="hospital-card" data-bs-toggle="modal" data-bs-target="#hospitalModal" onclick='setModalData(<?php echo json_encode($row); ?>)'>
+                <div class="hospital-card-header">
+                  <i class="fas fa-hospital me-2"></i><?php echo htmlspecialchars($row['name']); ?>
                 </div>
-                <div class="hospital-info">
-                  <i class="fas fa-phone"></i>
-                  <span><?php echo htmlspecialchars($row['contact']); ?></span>
-                </div>
-                <div class="hospital-info">
-                  <i class="fas fa-stethoscope"></i>
-                  <span><?php echo htmlspecialchars($row['services']); ?></span>
-                </div>
-                <div class="text-end mt-3">
-                  <a href="#" class="view-details">View Details <i class="fas fa-chevron-right ms-1"></i></a>
+                <div class="hospital-card-body">
+                  <div class="hospital-info">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span><?php echo htmlspecialchars($row['location']); ?></span>
+                  </div>
+                  <div class="hospital-info">
+                    <i class="fas fa-phone"></i>
+                    <span><?php echo htmlspecialchars($row['contact']); ?></span>
+                  </div>
+                  <div class="hospital-info">
+                    <i class="fas fa-stethoscope"></i>
+                    <span><?php echo htmlspecialchars($row['services']); ?></span>
+                  </div>
+                  <div class="text-end mt-3">
+                    <a href="#" class="view-details">View Details <i class="fas fa-chevron-right ms-1"></i></a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        <?php } ?>
-      </div>
+          <?php } ?>
+        </div>
+      <?php else: ?>
+        <div class="alert alert-info">
+          No hospitals found matching your criteria.
+        </div>
+      <?php endif; ?>
     </div>
     
     <div class="col-lg-4">
@@ -192,7 +318,7 @@ $result = mysqli_query($conn, $query);
   </div>
 </div>
 
-<!-- Tips Section -->
+
 <section class="tips-section">
   <div class="container">
     <div class="row align-items-center">
@@ -267,7 +393,7 @@ $result = mysqli_query($conn, $query);
   </div>
 </section>
 
-<!-- Hospital Modal -->
+
 <div class="modal fade" id="hospitalModal" tabindex="-1" aria-labelledby="hospitalModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -276,7 +402,7 @@ $result = mysqli_query($conn, $query);
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" id="hospitalModalBody">
-        <!-- Content will be inserted here by JavaScript -->
+        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -286,10 +412,10 @@ $result = mysqli_query($conn, $query);
   </div>
 </div>
 
-<!-- Bootstrap Bundle JS -->
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-  // Navbar scroll effect
+ 
   window.addEventListener('scroll', function() {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 50) {
@@ -299,10 +425,10 @@ $result = mysqli_query($conn, $query);
     }
   });
   
-  // Current hospital data
+  
   let currentHospital = null;
   
-  // Modal functionality
+  
   function setModalData(hospital) {
     currentHospital = hospital;
     
@@ -341,7 +467,7 @@ $result = mysqli_query($conn, $query);
       </div>`;
   }
   
-  // Get Directions button handler
+  
   document.getElementById('getDirectionsBtn').addEventListener('click', function() {
     if (currentHospital && currentHospital.location) {
       const address = encodeURIComponent(currentHospital.location);

@@ -2,7 +2,6 @@
 
 include 'db.php';
 
-// Handle delete
 if (isset($_GET['delete'])) {
     $id = intval($_GET['delete']);
     $stmt = $conn->prepare("DELETE FROM pet_stall WHERE id = ?");
