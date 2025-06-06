@@ -1,10 +1,8 @@
 <?php
 include 'db.php';
+session_start();
 
- if (!isset($_SESSION['admin_logged_in'])) {
-     header("Location: login.php");
-    exit;
- }
+
 
 
 $result = $conn->query("SELECT i.*, u.name FROM item_donations i JOIN users u ON i.user_id = u.id ORDER BY i.donation_date DESC");

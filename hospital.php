@@ -80,8 +80,8 @@ while ($row = mysqli_fetch_assoc($locations_result)) {
 }
 
 .btn-adopt {
-  background-color: #E3D7ED;
-  color: black !important;
+  background-color: black;
+  color: #E3D7ED !important;
   border-radius: 50px;
   padding: 8px 20px !important;
   font-weight: 600;
@@ -114,13 +114,14 @@ while ($row = mysqli_fetch_assoc($locations_result)) {
   .hero-section {
     position: relative;
     height: 400px; 
-    color: white;
+    color: black;
     display: flex;
     align-items: center; 
     justify-content: center; 
     text-align: center; 
     padding: 0 20px;
     margin-top: 56px; 
+    
   }
 
   .hero-content {
@@ -156,56 +157,44 @@ while ($row = mysqli_fetch_assoc($locations_result)) {
 
   
 <body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#"><span style="color: black;">Stray</span> <span style="color:#5A3D7A;">Heart</span></a>
+        <button class="navbar-toggler bg-black" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="pet_list.php">Pet List</a></li>
+                <li class="nav-item"><a class="nav-link" href="hospital.php">Hospitals</a></li>
+                <li class="nav-item"><a class="nav-link" href="donate.php">Donation</a></li>
+               
+                <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+                    <li class="nav-item"><a class="nav-link" href="admin_dashboard.php">Admin</a></li>
+                <?php endif; ?>
 
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
-  <div class="container">
-    <a class="navbar-brand" href="#">
-      <span style="color: black">Stray</span> <span style="color:#5A3D7A">Heart</span>
-    </a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link active" href="index.php">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="pet_list.php">Pet List</a></li>
-        <li class="nav-item"><a class="nav-link" href="hospital.php">Hospitals</a></li>
-        <li class="nav-item"><a class="nav-link" href="donate.php">Donation</a></li>
-
-        <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin'): ?>
-          <li class="nav-item"><a class="nav-link" href="admin_dashboard.php">Admin</a></li>
-        <?php endif; ?>
-
-        <?php if (isset($_SESSION['user_id'])): ?>
-         
-          <li class="nav-item dropdown ms-lg-3">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-              <i class="fas fa-user-circle fa-lg"></i> 
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item" href="profile.php">View Profile</a></li>
-              <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+                <?php if (isset($_SESSION['user_id'])): ?>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user-circle fa-lg"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="profile.php">View Profile</a></li>
+                            <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+                        </ul>
+                    </li>
+                <?php else: ?>
+                    <li class="nav-item">
+                        <a class="nav-link btn-adopt" href="login.php">Login</a>
+                    </li>
+                <?php endif; ?>
             </ul>
-          </li>
-        <?php else: ?>
-          
-          <li class="nav-item ms-lg-2">
-            <a class="nav-link btn-adopt" href="login.php">Login</a>
-          </li>
-        <?php endif; ?>
-      </ul>
+        </div>
     </div>
-  </div>
 </nav>
+
+
 
 <section class="hero-section">
   <div class="container">
@@ -297,22 +286,23 @@ while ($row = mysqli_fetch_assoc($locations_result)) {
         <h3 class="mb-4" style="color: var(--deep-purple);">Emergency Contacts</h3>
         <div class="mb-4">
           <h5 class="d-flex align-items-center" style="color: var(--deep-purple);">
-            <i class="fas fa-phone-alt me-3"></i>24/7 Emergency
+            <i class="fas fa-phone-alt me-3"></i>PetVet Clinic-Colombo 5
           </h5>
-          <p class="ms-5">123-456-7890</p>
+          <p class="ms-5">0777738838</p>
         </div>
         <div class="mb-4">
           <h5 class="d-flex align-items-center" style="color: var(--deep-purple);">
-            <i class="fas fa-ambulance me-3"></i>Pet Ambulance
+            <i class="fas fa-phone-alt me-3"></i>Suwana Pet Care-Kalutara
           </h5>
-          <p class="ms-5">987-654-3210</p>
+          <p class="ms-5">0776641312</p>
         </div>
         <div class="mb-4">
           <h5 class="d-flex align-items-center" style="color: var(--deep-purple);">
-            <i class="fas fa-info-circle me-3"></i>Poison Control
+            <i class="fas fa-phone-alt me-3"></i>Blue Paw Veterinary Hospital-Colombo 3
           </h5>
-          <p class="ms-5">555-123-4567</p>
+          <p class="ms-5">0774567890</p>
         </div>
+       
       </div>
     </div>
   </div>

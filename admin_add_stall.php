@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_stall'])) {
             border-radius: 8px;
         }
         input[type=submit] {
-            background-color: #7f00ff;
+            background-color:#5A3D7A;
             color: white;
             padding: 12px;
             border: none;

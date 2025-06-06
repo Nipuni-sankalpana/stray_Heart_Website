@@ -3,11 +3,6 @@ include 'db.php';
 session_start();
 
 
- if (!isset($_SESSION['admin_logged_in'])) {
-     header("Location: login.php");
-    exit;
- }
-
 $result = $conn->query("SELECT f.*, u.name FROM food_donations f JOIN users u ON f.user_id = u.id ORDER BY f.donation_date DESC");
 ?>
 

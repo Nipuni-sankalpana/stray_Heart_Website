@@ -40,8 +40,8 @@ $stall_info = $stall->fetch_assoc();
 }
 
 .btn-adopt {
-  background-color: #E3D7ED;
-  color: black !important;
+  background-color: black;
+  color: #E3D7ED !important;
   border-radius: 50px;
   padding: 8px 20px !important;
   font-weight: 600;
@@ -103,8 +103,13 @@ $stall_info = $stall->fetch_assoc();
       <h1>Stray <span>Heart</span></h1>
       <span class="welcome-text">Welcome to our paw family.. 🐶🐱</span>
       <p>
-        At Stray Heart, we believe every stray has a story—and every heart, no matter how small, deserves love.
-        Whether you're here to adopt, volunteer, or share in our compassion, you're now part of a community that beats for the voiceless.
+        Open your heart, find your purr-fect match! 💖
+
+Every paw here dreams of a loving home—could it be yours? Browse our furry friends and let love lead the way!
+
+🐶🐱 Because every stray deserves a happy tail. 🏡
+
+
       </p>
       <a href="login.php" class="btn btn-outline-secondary">Get Started</a>
     </div>

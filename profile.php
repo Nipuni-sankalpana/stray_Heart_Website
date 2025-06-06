@@ -31,6 +31,9 @@ if (!$user) {
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <style>
+    body{
+       background-image: url(assets/images/hospital\ bg.png);
+    }
     .navbar {
   background-color:#E3D7ED !important;
 }
@@ -53,8 +56,8 @@ if (!$user) {
 }
 
 .btn-adopt {
-  background-color: #E3D7ED;
-  color: black !important;
+  background-color: black;
+  color: #E3D7ED !important;
   border-radius: 50px;
   padding: 8px 20px !important;
   font-weight: 600;
@@ -68,30 +71,45 @@ if (!$user) {
 
     .profile-card {
       max-width: 600px;
+      background: transparent;
       margin: 100px auto;
       padding: 30px;
       border-radius: 15px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
-    .profile-image {
-      width: 120px;
-      height: 120px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin-bottom: 15px;
-    }
+    
     .card-header {
-      background: #7f00ff;
-      color: white;
+      background: #E3D7ED;
+      color: black;
       border-radius: 10px 10px 0 0;
       text-align: center;
     }
+    .btn {
+            background-color: #E3D7ED;
+            color: black;
+            border: none;
+            padding: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 7px;
+            width: 40%;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: black;
+            color: #E3D7ED;
+            transform: translateY(-3px);
+           
+        }
   </style>
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#"><span style="color: black;">Stray</span> <span style="color:white;">Heart</span></a>
+        <a class="navbar-brand" href="#"><span style="color: black;">Stray</span> <span style="color:#5A3D7A;">Heart</span></a>
         <button class="navbar-toggler bg-black" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -136,13 +154,16 @@ if (!$user) {
       <?php if (!empty($user['profile_image'])): ?>
         <img src="uploads/<?php echo htmlspecialchars($user['profile_image']); ?>" class="profile-image" alt="Profile Image">
       <?php else: ?>
-        <img src="assets/images/default-user.png" class="profile-image" alt="Default Profile">
+        
       <?php endif; ?>
       
       <p><strong>Email:</strong> <?php echo htmlspecialchars($user['email']); ?></p>
       <p><strong>Role:</strong> <?php echo htmlspecialchars($user['role']); ?></p>
       
-      <a href="user-dashboard.php" class="btn btn-primary mt-3">user dashboard</a>
+      <a href="user-dashboard.php" class="btn btn-outline-secondary">
+  User Dashboard
+</a>
+
     </div>
   </div>
 </div>

@@ -1,7 +1,10 @@
 <?php
 include 'db.php';
 session_start();
-$conn = new mysqli("localhost:3307", "root", "12345", "stray_heart");
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
 
 
 $pets = $conn->query("SELECT * FROM pets");
@@ -59,8 +62,8 @@ while($row = $species_result->fetch_assoc()) {
 }
 
 .btn-adopt {
-  background-color: #E3D7ED;
-  color: black !important;
+  background-color: black;
+  color: #E3D7ED !important;
   border-radius: 50px;
   padding: 8px 20px !important;
   font-weight: 600;

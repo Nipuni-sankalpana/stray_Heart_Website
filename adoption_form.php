@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <style>
         body {
-            font-family: 'Segoe UI", Tahoma, Geneva, Verdana, sans-serif';
+             font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
             background-image: url(assets/images/adoption.jpg);
             background-size: cover;
             margin: 0;
@@ -233,7 +233,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
   <div class="container">
     <a class="navbar-brand" href="#">
-      <span style="color: #e3d7ed">Stray</span> <span style="color:black">Heart</span>
+      <span style="color: black">Stray</span> <span style="color:#5A3D7A;">Heart</span>
     </a>
     <button
       class="navbar-toggler"

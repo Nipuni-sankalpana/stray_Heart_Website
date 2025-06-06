@@ -53,8 +53,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       max-width: 400px;
     }
     .btn-signup {
-      background-color: #7f00ff;
-      color: white;
+      background-color:black;
+      color: #E3D7ED;
       border: none;
       padding: 0.75rem 1.5rem;
       border-radius: 30px;
@@ -62,7 +62,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       font-weight: bold;
     }
     .btn-signup:hover {
-      background-color: #e100ff;
+      background-color: #E3D7ED;
+      color:black;
     }
   </style>
 </head>

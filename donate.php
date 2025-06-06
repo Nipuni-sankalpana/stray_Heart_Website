@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['donation_type'])) {
             $stmt = $conn->prepare("INSERT INTO food_donations (user_id, food_type, quantity, message) VALUES (?, ?, ?, ?)");
             $stmt->bind_param("isds", $user_id, $food_type, $quantity, $msg);
             if ($stmt->execute()) {
-                $message = "Food donation request sent. You can deliver foods to our admin's address below.";
+                $message = "We will notify you via email once the food you donated has been delivered to us. If delivery is difficult, you can bring it to our stalls when they are available.";
             } else {
                 throw new Exception("Error processing food donation");
             }
@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['donation_type'])) {
             $stmt = $conn->prepare("INSERT INTO item_donations (user_id, item_name, quantity, message) VALUES (?, ?, ?, ?)");
             $stmt->bind_param("isis", $user_id, $item_name, $quantity, $msg);
             if ($stmt->execute()) {
-                $message = "Item donation request sent. You can deliver items to our admin's address below.";
+                $message = "We will notify you via email once the Items you donated has been delivered to us. If delivery is difficult, you can bring it to our stalls when they are available.";
             } else {
                 throw new Exception("Error processing item donation");
             }
@@ -356,46 +356,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['donation_type'])) {
 <body>
 
 
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
-  <div class="container">
-    <a class="navbar-brand" href="index.php">
-      <span style="color: black">Stray</span> <span style="color:#5A3D7A">Heart</span>
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#"><span style="color: black;">Stray</span> <span style="color:#5A3D7A;">Heart</span></a>
+        <button class="navbar-toggler bg-black" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="pet_list.php">Pet List</a></li>
+                <li class="nav-item"><a class="nav-link" href="hospital.php">Hospitals</a></li>
+                <li class="nav-item"><a class="nav-link" href="donate.php">Donation</a></li>
+               
+                <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+                    <li class="nav-item"><a class="nav-link" href="admin_dashboard.php">Admin</a></li>
+                <?php endif; ?>
 
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="pet_list.php">Pet List</a></li>
-        <li class="nav-item"><a class="nav-link" href="hospital.php">Hospitals</a></li>
-        <li class="nav-item"><a class="nav-link active" href="donate.php">Donation</a></li>
-
-        <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin'): ?>
-          <li class="nav-item"><a class="nav-link" href="admin_dashboard.php">Admin</a></li>
-        <?php endif; ?>
-
-        <?php if (isset($_SESSION['user_id'])): ?>
-          
-          <li class="nav-item dropdown ms-lg-3">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-              <i class="fas fa-user-circle fa-lg"></i> 
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item" href="profile.php">View Profile</a></li>
-              <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+                <?php if (isset($_SESSION['user_id'])): ?>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user-circle fa-lg"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="profile.php">View Profile</a></li>
+                            <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+                        </ul>
+                    </li>
+                <?php else: ?>
+                    <li class="nav-item">
+                        <a class="nav-link btn-adopt" href="login.php">Login</a>
+                    </li>
+                <?php endif; ?>
             </ul>
-          </li>
-        <?php else: ?>
-          <li class="nav-item ms-lg-2">
-            <a class="nav-link btn-adopt" href="login.php">Login</a>
-          </li>
-        <?php endif; ?>
-      </ul>
+        </div>
     </div>
-  </div>
 </nav>
+
 
 
 <section class="hero">
@@ -512,7 +509,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['donation_type'])) {
         <div class="info-card">
             <i class="fas fa-clock"></i>
             <h3>Donation Hours</h3>
-            <p>Monday-Friday: 8:30am-5:30pm<br>Saturday: 9am-2pm<br>Sunday: Closed</p>
+            <p>Full Time</p>
         </div>
         
         <div class="info-card">
