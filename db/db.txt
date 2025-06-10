@@ -1,0 +1,100 @@
+-- Create database if not exists and use it
+CREATE DATABASE IF NOT EXISTS `stray_heart`;
+USE `stray_heart`;
+
+-- Create users table
+CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  email VARCHAR(100) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  role ENUM('user', 'admin') NOT NULL
+);
+
+-- Create hospitals table
+CREATE TABLE hospitals (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100),
+  location VARCHAR(100),
+  contact VARCHAR(50),
+  services TEXT,
+  about TEXT
+);
+
+-- Create pets table
+CREATE TABLE pets (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100),
+  age VARCHAR(20),
+  breed VARCHAR(100),
+  species VARCHAR(100),
+  description TEXT,
+  image VARCHAR(255),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Create likes table
+CREATE TABLE likes (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  pet_id INT NOT NULL,
+  UNIQUE KEY unique_like (user_id, pet_id),
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+  FOREIGN KEY (pet_id) REFERENCES pets(id) ON DELETE CASCADE
+);
+
+CREATE TABLE adoptions (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  pet_id INT NOT NULL,
+  fullname VARCHAR(100) NOT NULL,
+  phone VARCHAR(20) NOT NULL,
+  address TEXT NOT NULL,
+  note TEXT,
+  status VARCHAR(20) DEFAULT 'Pending',
+  request_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id),
+  FOREIGN KEY (pet_id) REFERENCES pets(id)
+);
+-- Money Donations
+CREATE TABLE money_donations (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    amount DECIMAL(10,2) NOT NULL,
+    payment_method VARCHAR(50) NOT NULL,
+    donation_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+-- Food Donations
+CREATE TABLE food_donations (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    food_type VARCHAR(255) NOT NULL,
+    quantity DECIMAL(10,2) NOT NULL,
+    message TEXT,
+    donation_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    confirmed_by_admin TINYINT(1) DEFAULT 0,
+    confirmed_date DATETIME NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+-- Item Donations
+CREATE TABLE item_donations (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    item_name VARCHAR(255) NOT NULL,
+    quantity INT NOT NULL,
+    message TEXT,
+    donation_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    confirmed_by_admin TINYINT(1) DEFAULT 0,
+    confirmed_date DATETIME NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE pet_stall (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    address VARCHAR(255) NOT NULL,
+    open_hours VARCHAR(100) NOT NULL,
+    contact VARCHAR(50)
+);

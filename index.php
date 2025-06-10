@@ -66,7 +66,7 @@ $stall_info = $stall->fetch_assoc();
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="pet_list.php">Pet List</a></li>
                 <li class="nav-item"><a class="nav-link" href="hospital.php">Hospitals</a></li>
                 <li class="nav-item"><a class="nav-link" href="donate.php">Donation</a></li>
